@@ -59,6 +59,7 @@ function Plan({
   notincludetitle,
   notinclude,
   featured = false,
+  isFree = false,
 }: {
   name: string
   price: string
@@ -68,6 +69,7 @@ function Plan({
   notincludetitle: string
   notinclude: Array<string>
   featured?: boolean
+  isFree?: boolean
 }) {
   return (
     <section
@@ -77,13 +79,18 @@ function Plan({
       )}
     >
       <h3 className="mt-5 font-display text-lg text-white">{name}</h3>
+      {description ? (
+        <p className="mt-2 text-sm text-slate-300">{description}</p>
+      ) : null}
 
       <p className="order-first font-display text-5xl font-light tracking-tight text-white">
         {price}
       </p>
-      <p className="order-first font-display text-sm font-light tracking-tight text-white">
-        (Billed Annually)
-      </p>
+      {!isFree ? (
+        <p className="order-first font-display text-sm font-light tracking-tight text-white">
+          (Billed Annually)
+        </p>
+      ) : null}
       <ul
         role="list"
         className={clsx(
@@ -102,12 +109,14 @@ function Plan({
         role="list"
         className={clsx(
           'order-last mt-10 flex flex-col gap-y-3 text-sm',
-          notinclude ? 'text-white' : 'text-slate-200',
+          notinclude.length > 0 ? 'text-white' : 'text-slate-200',
         )}
       >
-        <h3 className="mt-2 font-display text-lg text-red-400">
-          {notincludetitle}
-        </h3>
+        {notincludetitle ? (
+          <h3 className="mt-2 font-display text-lg text-red-400">
+            {notincludetitle}
+          </h3>
+        ) : null}
         {notinclude.map((notinclude) => (
           <li key={notinclude} className="flex">
             <CheckIcon
@@ -146,15 +155,36 @@ export function Pricing() {
             </span>{' '}
           </h2>
           <p className="mt-4 text-lg text-slate-400">
-            Flexible plans designed for every researcher. Choose monthly or
-            yearly billing.
+            Start free on signup, or choose a paid plan with monthly or yearly
+            billing.
           </p>
         </div>
-        <div className="-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-3 xl:mx-0 xl:gap-x-8">
+        <div className="-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
+          <Plan
+            isFree
+            name="Free"
+            price="Free"
+            description="Get started with limited proposal generation and watermarked exports."
+            href="https://app.rflowz.com/register"
+            features={[
+              'Up to 2 proposal generations per month',
+              'Limited AI writing assistance',
+              'Watermarked DOCX and PDF export',
+              '1 basic template',
+            ]}
+            notincludetitle="Does not include"
+            notinclude={[
+              'PowerPoint export',
+              'Framework generator',
+              'Collaboration',
+              'Unwatermarked exports',
+            ]}
+          />
+
           <Plan
             name="Starter"
             price="$3.29/month"
-            description="Good for anyone who is self-employed and just getting started."
+            description="Perfect for beginners and occasional users looking to get started with research proposal formulation."
             href="https://app.rflowz.com/register"
             features={[
               'Access to basic proposal templates',
@@ -166,7 +196,7 @@ export function Pricing() {
             notincludetitle="Does not include"
             notinclude={[
               'AI-driven support for literature review structuring',
-              ' Priority proposal generation queue',
+              'Priority proposal generation queue',
               'Advanced AI-guided proposal structure and referencing tools',
             ]}
           />
@@ -175,28 +205,31 @@ export function Pricing() {
             featured
             name="Standard (Recommended)"
             price="$4.99/month"
-            description="Perfect for small / medium sized businesses."
+            description="Ideal for academic professionals and regular researchers needing enhanced tools and support."
             href="https://app.rflowz.com/register"
             features={[
               'Access to all proposal templates',
               'AI-driven support for literature review structuring',
               'Up to 30 proposal generations per month',
+              'PowerPoint (PPTX) export',
               'Email support',
               'Priority help center access',
               'Priority proposal generation queue',
+            ]}
+            notincludetitle="Does not include"
+            notinclude={[
               'Advanced AI-guided proposal structure and referencing tools',
             ]}
-            notincludetitle=""
-            notinclude={[]}
           />
           <Plan
             name="Professional"
             price="$7.99/month"
-            description="For even the biggest enterprise companies."
+            description="Best for large-scale research projects and experienced researchers."
             href="https://app.rflowz.com/register"
             features={[
               'Unlimited proposal generations per month',
               'Advanced AI-guided proposal structure and referencing tools',
+              'PowerPoint (PPTX) export',
               'Premium email and chat support',
               'Dedicated support for research methodologies',
               'Professional-grade proposal formatting tools',

@@ -18,14 +18,14 @@ const faqs = [
   ],
   [
     {
-      question: 'Is there a free trial available?',
+      question: 'Is there a free plan?',
       answer:
-        'Absolutely! All our plans come with a 7-day free trial no credit card required. This allows you to explore the platform and its core features before deciding on a paid plan.',
+        'Yes. Every new account starts on the Free plan with up to 2 proposal generations, limited AI writing assistance, and 2 watermarked DOCX/PDF exports per month — no credit card required.',
     },
     {
-      question: 'What happens after my free trial ends?',
+      question: 'Do paid plans include a free trial?',
       answer:
-        "Once your free trial ends, you can choose to subscribe to any of our paid plans. If you do not upgrade, your account will revert to a limited free version where you can still access your existing work but won't be able to create new proposals or use premium features.",
+        'Yes. Paid plans include a 5-day free trial so you can explore premium features before subscribing. If you do not upgrade after the trial, your account returns to the Free plan limits.',
     },
   ],
   [

@@ -32,7 +32,7 @@ export function CallToAction() {
             color="white"
             className="mt-10"
           >
-            Get 30 days free trial
+            Get started for free
           </Button>
         </div>
       </Container>
