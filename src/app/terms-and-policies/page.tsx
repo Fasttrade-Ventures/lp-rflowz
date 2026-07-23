@@ -1,9 +1,16 @@
 import React from 'react'
+import { type Metadata } from 'next'
+
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { siteConfig } from '@/lib/site'
 
-export const metadata = {
-  title: 'RFlowZ-SS Terms and Policies',
+export const metadata: Metadata = {
+  title: 'Terms and Policies',
+  description: `Read the terms, privacy policies, and subscription details for ${siteConfig.name} research proposal software.`,
+  alternates: {
+    canonical: '/terms-and-policies',
+  },
 }
 
 export default function TermsAndPolicies() {
@@ -13,7 +20,7 @@ export default function TermsAndPolicies() {
       <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 sm:py-24">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            RFlowZ-SS Terms and Policies
+            {siteConfig.name} Terms and Policies
           </h1>
           <div className="mt-10 space-y-8 text-base leading-7 text-gray-600">
             <section>
@@ -21,11 +28,11 @@ export default function TermsAndPolicies() {
                 1. Introduction
               </h2>
               <p className="mt-4">
-                Welcome to RFlowZ-SS! These Terms and Policies govern the use of
-                the RFlowZ-SS platform and outline your rights and
-                responsibilities as a user. By accessing or using the platform,
-                you agree to comply with these terms. Please read them
-                carefully.
+                Welcome to {siteConfig.name} ({siteConfig.legalName})! These Terms
+                and Policies govern the use of the {siteConfig.name} platform and
+                outline your rights and responsibilities as a user. By accessing
+                or using the platform, you agree to comply with these terms.
+                Please read them carefully.
               </p>
             </section>
 
@@ -34,7 +41,7 @@ export default function TermsAndPolicies() {
                 2. User Eligibility
               </h2>
               <p className="mt-4">
-                RFlowZ-SS is intended for use by researchers, students, academic
+                {siteConfig.name} is intended for use by researchers, students, academic
                 institutions, and professionals engaged in research activities.
                 Users must be at least 18 years old or have permission from a
                 guardian or institution to use the platform.
@@ -66,7 +73,7 @@ export default function TermsAndPolicies() {
                 4. Subscription and Pricing Plans
               </h2>
               <p className="mt-4">
-                RFlowZ-SS offers various subscription plans to cater to
+                {siteConfig.name} offers various subscription plans to cater to
                 different user needs. Pricing details are as follows:
               </p>
               <ul className="mt-4 list-disc pl-5">
@@ -132,7 +139,7 @@ export default function TermsAndPolicies() {
                 5. License and Access
               </h2>
               <p className="mt-4">
-                RFlowZ-SS grants users a limited, non-exclusive,
+                {siteConfig.name} grants users a limited, non-exclusive,
                 non-transferable license to use the platform according to their
                 chosen plan. The license is subject to compliance with these
                 terms and is intended solely for research and educational
@@ -168,7 +175,7 @@ export default function TermsAndPolicies() {
               </h2>
               <ul className="mt-4 list-disc pl-5">
                 <li>
-                  RFlowZ-SS values your privacy and takes reasonable steps to
+                  {siteConfig.name} values your privacy and takes reasonable steps to
                   protect your personal data.
                 </li>
                 <li>
@@ -190,7 +197,7 @@ export default function TermsAndPolicies() {
                 8. No Fake Citations Policy
               </h2>
               <p className="mt-4">
-                RFlowZ-SS is committed to maintaining the integrity of academic
+                {siteConfig.name} is committed to maintaining the integrity of academic
                 research. By integrating directly with Mendeley, we ensure that
                 all citations and references are genuine and traceable. Users
                 must not manually alter citations to misrepresent sources or
@@ -203,7 +210,7 @@ export default function TermsAndPolicies() {
                 9. Limitation of Liability
               </h2>
               <p className="mt-4">
-                RFlowZ-SS and its affiliates are not liable for any indirect,
+                {siteConfig.name} and its affiliates are not liable for any indirect,
                 incidental, or consequential damages arising from the use of the
                 platform. Users agree to use the platform at their own risk.
               </p>
@@ -214,7 +221,7 @@ export default function TermsAndPolicies() {
                 10. Intellectual Property
               </h2>
               <p className="mt-4">
-                All content, features, and functionality of the RFlowZ-SS
+                All content, features, and functionality of the {siteConfig.name}
                 platform are owned by Dr. Zack Zairul and its affiliates. Users
                 must not copy, modify, or distribute any part of the platform
                 without express written consent.
@@ -232,7 +239,7 @@ export default function TermsAndPolicies() {
                   cycle.
                 </li>
                 <li>
-                  RFlowZ-SS reserves the right to terminate accounts for
+                  {siteConfig.name} reserves the right to terminate accounts for
                   violation of these terms without prior notice.
                 </li>
               </ul>
@@ -243,7 +250,7 @@ export default function TermsAndPolicies() {
                 12. Amendments to Terms
               </h2>
               <p className="mt-4">
-                RFlowZ-SS may update these Terms and Policies periodically.
+                {siteConfig.name} may update these Terms and Policies periodically.
                 Users will be notified of significant changes via email or
                 platform announcements. Continued use of the platform after such
                 changes constitutes acceptance of the new terms.
@@ -268,7 +275,7 @@ export default function TermsAndPolicies() {
             </section>
 
             <p className="mt-8 italic">
-              By using RFlowZ-SS, you acknowledge that you have read,
+              By using {siteConfig.name}, you acknowledge that you have read,
               understood, and agree to these Terms and Policies.
             </p>
           </div>

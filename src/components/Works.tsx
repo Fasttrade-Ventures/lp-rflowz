@@ -16,22 +16,26 @@ const features = [
     title: 'Step 1',
     description: 'Create your proposal with customizable templates.',
     image: screenshotPayroll,
+    imageAlt: 'Step 1: Create a research proposal with RflowZ templates',
   },
   {
     title: 'Step 2',
     description: 'Generate content with our AI-powered writing assistant.',
     image: MendeleyIntegration,
+    imageAlt: 'Step 2: Generate proposal content with RflowZ AI writing',
   },
   {
     title: 'Step 3',
     description: 'Import and manage citations effortlessly from Mendeley.',
     image: CustomizableTemplates,
+    imageAlt: 'Step 3: Import Mendeley citations into your RflowZ proposal',
   },
   {
     title: 'Step 4',
     description:
-      'Collaborate with your team in real time and export a ready-to-submit proposal.',
+      'Export a ready-to-submit proposal in DOCX, PDF, or PPTX format.',
     image: CustomizableTemplates,
+    imageAlt: 'Step 4: Export your finished research proposal from RflowZ',
   },
 ]
 
@@ -57,8 +61,8 @@ export function Works() {
 
   return (
     <section
-      id="features"
-      aria-label="Features for running your books"
+      id="how-it-works"
+      aria-label="How RflowZ research proposal writing works"
       className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
     >
       <Image
@@ -133,7 +137,7 @@ export function Works() {
                       <Image
                         className="w-full"
                         src={feature.image}
-                        alt=""
+                        alt={feature.imageAlt}
                         priority
                         sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
                       />

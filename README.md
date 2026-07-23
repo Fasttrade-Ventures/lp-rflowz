@@ -1,35 +1,37 @@
-# lp-rflowz
+# RflowZ Landing Page
 
-Salient is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+Marketing website for [RflowZ](https://rflowz.com) — an AI-powered research proposal writing platform with Mendeley integration, customizable templates, and DOCX, PDF, and PPTX export.
 
-## Getting started
+## Stack
 
-To get started with this template, first install the npm dependencies:
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Headless UI](https://headlessui.dev)
+
+## Development
 
 ```bash
 npm install
-```
-
-Next, run the development server:
-
-```bash
 npm run dev
 ```
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Customizing
+## SEO / GEO / AIO
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+- Metadata, Open Graph, and Twitter cards in `src/app/layout.tsx`
+- `src/app/robots.ts` and `src/app/sitemap.ts`
+- JSON-LD structured data in `src/components/StructuredData.tsx`
+- AI crawler summary at `public/llms.txt`
+- Site configuration in `src/lib/site.ts`
 
-## License
+## Production
 
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+```bash
+npm run build
+npm start
+```
 
-## Learn more
+## App
 
-To learn more about the technologies used in this site template, see the following resources:
-
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+Sign up and product access: [https://app.rflowz.com](https://app.rflowz.com)

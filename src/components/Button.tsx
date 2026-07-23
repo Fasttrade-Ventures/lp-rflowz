@@ -1,5 +1,12 @@
+'use client'
+
 import Link from 'next/link'
 import clsx from 'clsx'
+
+import {
+  isAppRflowzUrl,
+  useUpgradeAnnouncement,
+} from '@/components/UpgradeAnnouncement'
 
 const baseStyles = {
   solid:
@@ -54,6 +61,23 @@ export function Button({ className, ...props }: ButtonProps) {
         : undefined,
     className,
   )
+
+  const { openForUrl } = useUpgradeAnnouncement()
+
+  if (typeof props.href === 'string' && isAppRflowzUrl(props.href)) {
+    const { href, children } = props
+
+    return (
+      <button
+        type="button"
+        className={className}
+        aria-label={'aria-label' in props ? props['aria-label'] : undefined}
+        onClick={() => openForUrl(href)}
+      >
+        {children}
+      </button>
+    )
+  }
 
   return typeof props.href === 'undefined' ? (
     <button className={className} {...props} />

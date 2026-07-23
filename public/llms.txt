@@ -1,0 +1,46 @@
+# RflowZ
+
+> RflowZ is an AI-powered research proposal writing platform for students, academics, and research teams. It helps users create structured research proposals with AI-assisted writing, Mendeley citation import, customizable templates, and export to DOCX, PDF, and PPTX.
+
+## Official URLs
+
+- Website: https://rflowz.com
+- App (sign up / login): https://app.rflowz.com
+- Terms and policies: https://rflowz.com/terms-and-policies
+
+## Who it is for
+
+- Undergraduate and postgraduate students writing research proposals
+- Academic researchers and supervisors
+- Research teams preparing grant or thesis proposals
+
+## Core features
+
+- AI-assisted research proposal writing
+- Mendeley citation import and reference management
+- Customizable research proposal templates
+- Auto reference generation and academic formatting
+- Export to DOCX, PDF, and PPTX (plan-dependent)
+- Free plan available on registration (no credit card required)
+
+## Pricing plans (monthly / annual)
+
+| Plan | Monthly | Annual | Proposals/mo | Exports/mo | Watermark | PPTX |
+|------|---------|--------|--------------|------------|-----------|------|
+| Free | $0 | $0 | 2 | 2 | Yes | No |
+| Starter | $3.99 | $3.29 | 10 | 30 | No | No |
+| Standard | $5.99 | $4.99 | 30 | 50 | No | Yes |
+| Professional | $9.99 | $7.99 | Unlimited | Unlimited | No | Yes |
+
+Paid plans include a 5-day free trial. Annual billing offers a discount.
+
+## Frequently asked questions
+
+Q: Is there a free plan?
+A: Yes. New accounts start on the Free plan with 2 proposals, limited AI assistance, and 2 watermarked exports per month.
+
+Q: Does RflowZ integrate with Mendeley?
+A: Yes. Users can connect Mendeley and import citations into proposals.
+
+Q: What export formats are supported?
+A: DOCX and PDF on all eligible plans. PPTX export is available on Standard and Professional plans.

@@ -16,16 +16,18 @@ interface Feature {
   summary: string
   description: string
   image: ImageProps['src']
+  imageAlt: string
   icon: React.ComponentType
 }
 
 const features: Array<Feature> = [
   {
     name: 'Proven Framework from Years of Research',
-    summary: 'Stay on top of things with always up-to-date reporting features.',
+    summary: 'Follow a research-backed structure for every proposal.',
     description:
-      'We talked about reporting in the section above but we needed three items here, so mentioning it one more time for posterity.',
+      'Use frameworks shaped by academic research practice so your proposal covers the right sections, flow, and depth from the start.',
     image: ProvenFramework,
+    imageAlt: 'RflowZ proven research proposal framework structure',
     icon: function ReportingIcon() {
       let id = useId()
       return (
@@ -56,11 +58,11 @@ const features: Array<Feature> = [
   },
   {
     name: 'Easily Export to DOCX or PDF',
-    summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
+    summary: 'Submit-ready exports in one click.',
     description:
-      'With just one click, export your fully formatted proposal to DOCX or PDF, making it ready for submission in seconds.',
+      'Export your fully formatted proposal to DOCX or PDF in seconds. Free plan exports include a watermark; paid plans support unwatermarked files.',
     image: EasilyExport,
+    imageAlt: 'RflowZ export research proposal to DOCX or PDF',
     icon: function InventoryIcon() {
       return (
         <>
@@ -84,11 +86,11 @@ const features: Array<Feature> = [
   },
   {
     name: 'Guided from Experienced Research Templates',
-    summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
+    summary: 'Templates built for academic proposal writing.',
     description:
       'Get guidance from templates created by experienced researchers to make your proposal writing process smoother and more efficient.',
     image: Guided,
+    imageAlt: 'RflowZ guided research proposal templates',
     icon: function InventoryIcon() {
       return (
         <>
@@ -112,11 +114,11 @@ const features: Array<Feature> = [
   },
   {
     name: 'Auto Formatting',
-    summary:
-      'Organize all of your contacts, service providers, and invoices in one place.',
+    summary: 'Academic formatting handled for you.',
     description:
-      'Focus on your research while we handle the formatting according to academic standards.',
+      'Focus on your research while RflowZ handles formatting according to academic standards.',
     image: AutoFormatting,
+    imageAlt: 'RflowZ automatic academic proposal formatting',
     icon: function ContactsIcon() {
       return (
         <>
@@ -175,7 +177,7 @@ function FeaturesMobile() {
               <Image
                 className="w-full"
                 src={feature.image}
-                alt=""
+                alt={feature.imageAlt}
                 sizes="52.75rem"
               />
             </div>
@@ -226,7 +228,7 @@ function FeaturesDesktop() {
                     <Image
                       className="w-full"
                       src={feature.image}
-                      alt=""
+                      alt={feature.imageAlt}
                       sizes="52.75rem"
                     />
                   </div>
@@ -245,7 +247,7 @@ export function SecondaryFeatures() {
   return (
     <section
       id="secondary-features"
-      aria-label="Features for simplifying everyday business tasks"
+      aria-label="Additional RflowZ features for research proposals"
       className="pb-14 pt-20 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <Container>

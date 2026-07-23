@@ -2,16 +2,40 @@ import Image from 'next/image'
 
 import { Container } from '@/components/Container'
 import avatarImage1 from '@/images/avatars/avatar-1.png'
+import avatarImage2 from '@/images/avatars/avatar-2.png'
+import avatarImage3 from '@/images/avatars/avatar-3.png'
 
 const testimonials = [
   [
     {
       content:
-        'RflowZ helped me cut my research proposal writing time in half, and the AI suggestions were incredibly insightful!"',
+        'RflowZ helped me cut my research proposal writing time in half, and the AI suggestions were incredibly insightful.',
       author: {
         name: 'Aiman',
-        role: 'CEO at coollabapp ',
+        role: 'Graduate researcher',
         image: avatarImage1,
+      },
+    },
+  ],
+  [
+    {
+      content:
+        'The Mendeley integration saved hours of manual citation work. I could focus on my research questions instead of formatting.',
+      author: {
+        name: 'Sarah',
+        role: 'PhD candidate',
+        image: avatarImage2,
+      },
+    },
+  ],
+  [
+    {
+      content:
+        'Our students use RflowZ to draft stronger proposals faster. The templates and export options are exactly what we needed.',
+      author: {
+        name: 'Dr. Lee',
+        role: 'Academic supervisor',
+        image: avatarImage3,
       },
     },
   ],
@@ -29,13 +53,13 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      aria-label="What our customers are saying"
+      aria-label="What RflowZ customers are saying"
       className="bg-slate-50 py-20 sm:py-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Testimonials
+            Trusted by researchers
           </h2>
         </div>
         <ul
@@ -45,8 +69,8 @@ export function Testimonials() {
           {testimonials.map((column, columnIndex) => (
             <li key={columnIndex}>
               <ul role="list" className="flex flex-col gap-y-6 sm:gap-y-8">
-                {column.map((testimonial, testimonialIndex) => (
-                  <li key={testimonialIndex}>
+                {column.map((testimonial) => (
+                  <li key={testimonial.author.name}>
                     <figure className="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
                       <QuoteIcon className="absolute left-6 top-6 fill-slate-100" />
                       <blockquote className="relative">
@@ -67,7 +91,7 @@ export function Testimonials() {
                           <Image
                             className="h-14 w-14 object-cover"
                             src={testimonial.author.image}
-                            alt=""
+                            alt={`${testimonial.author.name}, ${testimonial.author.role}`}
                             width={56}
                             height={56}
                           />

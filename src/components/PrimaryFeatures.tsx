@@ -18,24 +18,28 @@ const features = [
     description:
       'Speed up your writing process with AI-generated responses tailored to your research needs.',
     image: screenshotPayroll,
+    imageAlt: 'RflowZ AI-assisted research proposal writing interface',
   },
   {
     title: 'Mendeley Integration',
     description:
       'Easily import citations directly from Mendeley, saving you valuable time.',
     image: MendeleyIntegration,
+    imageAlt: 'RflowZ Mendeley citation import for research proposals',
   },
   {
     title: 'Customizable Templates',
     description:
       'Choose from a variety of research proposal templates designed to help you succeed.',
     image: CustomizableTemplates,
+    imageAlt: 'RflowZ customizable research proposal templates',
   },
   {
     title: 'Auto Reference Generation',
     description:
       'Automatically generate and format your references in seconds. Say goodbye to manual citation work!',
     image: AutoReferenceGeneration,
+    imageAlt: 'RflowZ automatic reference generation for academic proposals',
   },
 ]
 
@@ -62,7 +66,7 @@ export function PrimaryFeatures() {
   return (
     <section
       id="features"
-      aria-label="Features for running your books"
+      aria-label="Core RflowZ features for research proposal writing"
       className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
     >
       <Image
@@ -137,7 +141,7 @@ export function PrimaryFeatures() {
                       <Image
                         className="w-full"
                         src={feature.image}
-                        alt=""
+                        alt={feature.imageAlt}
                         priority
                         sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
                       />

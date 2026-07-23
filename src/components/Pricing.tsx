@@ -2,6 +2,7 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { planComparison } from '@/lib/plans'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -27,25 +28,33 @@ function CheckIcon({
   return (
     <svg
       aria-hidden="true"
-      className={clsx(
-        'h-6 w-6 flex-none fill-current stroke-current',
-        className,
-      )}
+      className={clsx('h-5 w-5 flex-none', className)}
+      viewBox="0 0 20 20"
+      fill="currentColor"
       {...props}
     >
       <path
-        d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
-        strokeWidth={0}
+        fillRule="evenodd"
+        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
+        clipRule="evenodd"
       />
-      <circle
-        cx={12}
-        cy={12}
-        r={8.25}
-        fill="none"
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    </svg>
+  )
+}
+
+function XIcon({
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={clsx('h-5 w-5 flex-none', className)}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
     </svg>
   )
 }
@@ -72,70 +81,129 @@ function Plan({
   isFree?: boolean
 }) {
   return (
-    <section
+    <article
       className={clsx(
-        'flex flex-col rounded-3xl px-6 sm:px-8',
-        featured ? 'order-first bg-blue-600 py-8 lg:order-none' : 'lg:py-8',
+        'relative flex h-full flex-col rounded-3xl p-6 sm:p-8',
+        featured
+          ? 'bg-blue-600 shadow-xl shadow-blue-900/30 ring-2 ring-blue-400 lg:scale-[1.02]'
+          : 'bg-slate-800/60 ring-1 ring-slate-700/80',
       )}
     >
-      <h3 className="mt-5 font-display text-lg text-white">{name}</h3>
-      {description ? (
-        <p className="mt-2 text-sm text-slate-300">{description}</p>
+      {featured ? (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-600">
+          Recommended
+        </span>
       ) : null}
 
-      <p className="order-first font-display text-5xl font-light tracking-tight text-white">
-        {price}
-      </p>
-      {!isFree ? (
-        <p className="order-first font-display text-sm font-light tracking-tight text-white">
-          (Billed Annually)
+      <div className="space-y-4">
+        <div>
+          <h3 className="font-display text-xl text-white">{name}</h3>
+          {description ? (
+            <p
+              className={clsx(
+                'mt-2 text-sm leading-6',
+                featured ? 'text-blue-100' : 'text-slate-400',
+              )}
+            >
+              {description}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="border-b border-white/10 pb-6">
+          <p className="font-display text-4xl font-light tracking-tight text-white sm:text-5xl">
+            {price}
+            {!isFree ? (
+              <span
+                className={clsx(
+                  'ml-1 text-lg font-normal',
+                  featured ? 'text-blue-100' : 'text-slate-400',
+                )}
+              >
+                /mo
+              </span>
+            ) : null}
+          </p>
+          {!isFree ? (
+            <p
+              className={clsx(
+                'mt-1 text-sm',
+                featured ? 'text-blue-100' : 'text-slate-400',
+              )}
+            >
+              Billed annually
+            </p>
+          ) : (
+            <p
+              className={clsx(
+                'mt-1 text-sm',
+                featured ? 'text-blue-100' : 'text-slate-400',
+              )}
+            >
+              No credit card required
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-6 flex-1">
+        <p
+          className={clsx(
+            'text-xs font-semibold uppercase tracking-wide',
+            featured ? 'text-blue-100' : 'text-slate-400',
+          )}
+        >
+          What&apos;s included
         </p>
-      ) : null}
-      <ul
-        role="list"
-        className={clsx(
-          'order-last mt-10 flex flex-col gap-y-3 text-sm',
-          featured ? 'text-white' : 'text-slate-200',
-        )}
-      >
-        {features.map((feature) => (
-          <li key={feature} className="flex">
-            <CheckIcon className={featured ? 'text-white' : 'text-slate-400'} />
-            <span className="ml-4">{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <ul
-        role="list"
-        className={clsx(
-          'order-last mt-10 flex flex-col gap-y-3 text-sm',
-          notinclude.length > 0 ? 'text-white' : 'text-slate-200',
-        )}
-      >
-        {notincludetitle ? (
-          <h3 className="mt-2 font-display text-lg text-red-400">
-            {notincludetitle}
-          </h3>
+        <ul role="list" className="mt-4 flex flex-col gap-y-3">
+          {features.map((feature) => (
+            <li
+              key={feature}
+              className={clsx(
+                'flex gap-3 text-sm leading-6',
+                featured ? 'text-white' : 'text-slate-200',
+              )}
+            >
+              <CheckIcon
+                className={featured ? 'text-blue-100' : 'text-emerald-400'}
+              />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        {notinclude.length > 0 ? (
+          <div className="mt-6 border-t border-white/10 pt-6">
+            {notincludetitle ? (
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                {notincludetitle}
+              </p>
+            ) : null}
+            <ul role="list" className="mt-4 flex flex-col gap-y-2.5">
+              {notinclude.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-sm leading-6 text-slate-400"
+                >
+                  <XIcon className="text-slate-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
-        {notinclude.map((notinclude) => (
-          <li key={notinclude} className="flex">
-            <CheckIcon
-              className={notinclude ? 'text-white' : 'text-slate-400'}
-            />
-            <span className="ml-4">{notinclude}</span>
-          </li>
-        ))}
-      </ul>
+      </div>
+
       <Button
         href={href}
         variant={featured ? 'solid' : 'outline'}
         color="white"
-        className="mt-8"
+        className="mt-8 w-full"
         aria-label={`Get started with the ${name} plan for ${price}`}
       >
         Get started
       </Button>
-    </section>
+    </article>
   )
 }
 
@@ -147,19 +215,20 @@ export function Pricing() {
       className="bg-slate-900 py-20 sm:py-32"
     >
       <Container>
-        <div className="md:text-center">
+        <div className="mx-auto max-w-3xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             <span className="relative whitespace-nowrap">
               <SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-blue-400" />
               <span className="relative">Choose Your Plan</span>
-            </span>{' '}
+            </span>
           </h2>
-          <p className="mt-4 text-lg text-slate-400">
+          <p className="mt-4 text-lg leading-8 text-slate-400">
             Start free on signup, or choose a paid plan with monthly or yearly
             billing.
           </p>
         </div>
-        <div className="-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-2 xl:grid-cols-4 xl:gap-x-8">
+
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 xl:max-w-6xl xl:mx-auto xl:gap-10">
           <Plan
             isFree
             name="Free"
@@ -172,7 +241,7 @@ export function Pricing() {
               'Watermarked DOCX and PDF export',
               '1 basic template',
             ]}
-            notincludetitle="Does not include"
+            notincludetitle="Not included"
             notinclude={[
               'PowerPoint export',
               'Framework generator',
@@ -183,8 +252,8 @@ export function Pricing() {
 
           <Plan
             name="Starter"
-            price="$3.29/month"
-            description="Perfect for beginners and occasional users looking to get started with research proposal formulation."
+            price="$3.29"
+            description="Perfect for beginners and occasional users getting started with research proposal formulation."
             href="https://app.rflowz.com/register"
             features={[
               'Access to basic proposal templates',
@@ -193,7 +262,7 @@ export function Pricing() {
               'Email support',
               'Help center access',
             ]}
-            notincludetitle="Does not include"
+            notincludetitle="Not included"
             notinclude={[
               'AI-driven support for literature review structuring',
               'Priority proposal generation queue',
@@ -203,9 +272,9 @@ export function Pricing() {
 
           <Plan
             featured
-            name="Standard (Recommended)"
-            price="$4.99/month"
-            description="Ideal for academic professionals and regular researchers needing enhanced tools and support."
+            name="Standard"
+            price="$4.99"
+            description="Ideal for academic professionals and regular researchers who need enhanced tools and support."
             href="https://app.rflowz.com/register"
             features={[
               'Access to all proposal templates',
@@ -216,14 +285,15 @@ export function Pricing() {
               'Priority help center access',
               'Priority proposal generation queue',
             ]}
-            notincludetitle="Does not include"
+            notincludetitle="Not included"
             notinclude={[
               'Advanced AI-guided proposal structure and referencing tools',
             ]}
           />
+
           <Plan
             name="Professional"
-            price="$7.99/month"
+            price="$7.99"
             description="Best for large-scale research projects and experienced researchers."
             href="https://app.rflowz.com/register"
             features={[
@@ -238,6 +308,69 @@ export function Pricing() {
             notinclude={[]}
           />
         </div>
+
+        <div className="mx-auto mt-16 max-w-5xl overflow-x-auto xl:max-w-6xl">
+          <h3 className="text-center font-display text-xl text-white">
+            Plan comparison
+          </h3>
+          <table className="mt-6 w-full min-w-[640px] border-collapse text-left text-sm text-slate-200">
+            <caption className="sr-only">
+              RflowZ pricing plan comparison by proposals, exports, watermark,
+              and PPTX support
+            </caption>
+            <thead>
+              <tr className="border-b border-slate-700">
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Plan
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Monthly
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Annual
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Proposals
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Exports
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  Watermark
+                </th>
+                <th scope="col" className="px-4 py-3 font-semibold text-white">
+                  PPTX
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {planComparison.map((plan) => (
+                <tr
+                  key={plan.name}
+                  className="border-b border-slate-800/80 even:bg-slate-800/30"
+                >
+                  <th
+                    scope="row"
+                    className="px-4 py-3 font-medium text-white"
+                  >
+                    {plan.name}
+                  </th>
+                  <td className="px-4 py-3">{plan.monthly}</td>
+                  <td className="px-4 py-3">{plan.annual}/mo</td>
+                  <td className="px-4 py-3">{plan.proposals}</td>
+                  <td className="px-4 py-3">{plan.exports}</td>
+                  <td className="px-4 py-3">{plan.watermark}</td>
+                  <td className="px-4 py-3">{plan.pptx}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-slate-500">
+          All paid plans shown at annual billing. Monthly billing is also
+          available in the app.
+        </p>
       </Container>
     </section>
   )

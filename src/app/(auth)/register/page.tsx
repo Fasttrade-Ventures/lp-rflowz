@@ -8,6 +8,11 @@ import { SlimLayout } from '@/components/SlimLayout'
 
 export const metadata: Metadata = {
   title: 'Sign Up',
+  description: 'Create your free RflowZ account and start writing research proposals.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function Register() {

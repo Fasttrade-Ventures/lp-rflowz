@@ -2,28 +2,56 @@ import { type Metadata } from 'next'
 import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
+import { UpgradeAnnouncementProvider } from '@/components/UpgradeAnnouncement'
+import { siteConfig } from '@/lib/site'
 import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'RflowZ',
+    type: 'website',
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
     images: [
       {
-        url: 'https://app.rflowz.com/images/rflowz-og-image.png',
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: 'RFlowZ-SS',
+        alt: `${siteConfig.name} — AI research proposal writing platform`,
       },
     ],
-    description:
-      'Streamline your proposal writing with smart AI tools and seamless citation management from Mendeley.',
   },
-  title: {
-    template: 'RflowZ',
-    default: 'RflowZ',
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.name} | ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
-  description:
-    'Streamline your proposal writing with smart AI tools and seamless citation management from Mendeley.',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 const inter = Inter({
@@ -52,7 +80,9 @@ export default function RootLayout({
         lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col">{children}</body>
+      <body className="flex h-full flex-col">
+        <UpgradeAnnouncementProvider>{children}</UpgradeAnnouncementProvider>
+      </body>
     </html>
   )
 }
