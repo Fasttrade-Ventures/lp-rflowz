@@ -21,6 +21,21 @@ import { siteConfig } from '@/lib/site'
 
 const BANNER_STORAGE_KEY = 'rflowz-upgrade-banner-dismissed'
 
+const upgradeHighlights = [
+  {
+    title: 'Faster performance',
+    description: 'Work on proposals without interruption.',
+  },
+  {
+    title: 'Smarter AI tools',
+    description: 'Move from idea to submission more efficiently.',
+  },
+  {
+    title: 'Better for every plan',
+    description: 'Including our Free plan to get started.',
+  },
+]
+
 export function isAppRflowzUrl(href: string | undefined): boolean {
   if (!href || typeof href !== 'string') return false
   try {
@@ -67,68 +82,63 @@ function UpgradeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function MaintenanceNotice() {
+function HighlightCards() {
   return (
-    <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
-      <p className="font-semibold">app.rflowz.com is temporarily not working</p>
-      <p className="mt-1">
-        Login and sign up are unavailable while we migrate the system. Please
-        check back soon — we&apos;ll have the app running again shortly.
+    <ul className="grid grid-cols-1 gap-3 md:grid-cols-3">
+      {upgradeHighlights.map((item) => (
+        <li
+          key={item.title}
+          className="rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200/80"
+        >
+          <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+          <p className="mt-1 text-sm leading-5 text-slate-600">
+            {item.description}
+          </p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function MaintenanceAnnouncementContent() {
+  return (
+    <div className="space-y-5">
+      <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-amber-950">
+        <p className="text-base font-semibold">
+          app.rflowz.com is temporarily not working
+        </p>
+        <p className="mt-1 text-sm leading-6">
+          Login and sign up are unavailable while we migrate the system. Please
+          check back soon.
+        </p>
+      </div>
+
+      <p className="text-sm leading-6 text-slate-600">
+        We&apos;re upgrading RflowZ for students, academics, and research teams.
+        You can keep browsing this site for plans and FAQs in the meantime.
       </p>
+
+      <HighlightCards />
     </div>
   )
 }
 
-function AnnouncementContent() {
+function StandardAnnouncementContent() {
   return (
-    <>
-      {siteConfig.appMaintenanceMode ? <MaintenanceNotice /> : null}
-
-      <p
-        className={clsx(
-          'text-base leading-7 text-slate-600',
-          siteConfig.appMaintenanceMode && 'mt-5',
-        )}
-      >
+    <div className="space-y-5">
+      <p className="text-sm leading-6 text-slate-600">
         RflowZ is going through an important platform upgrade designed to deliver
-        a faster, more reliable, and more powerful research proposal experience
-        for students, academics, and research teams.
+        a faster, more reliable, and more powerful research proposal
+        experience.
       </p>
-      <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-600">
-        <li className="flex gap-3">
-          <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-blue-600" />
-          <span>
-            <strong className="font-semibold text-slate-900">
-              Improved performance and stability
-            </strong>{' '}
-            so you can work on proposals without interruption.
-          </span>
-        </li>
-        <li className="flex gap-3">
-          <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-blue-600" />
-          <span>
-            <strong className="font-semibold text-slate-900">
-              Smarter AI writing and export tools
-            </strong>{' '}
-            to help you move from idea to submission more efficiently.
-          </span>
-        </li>
-        <li className="flex gap-3">
-          <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-blue-600" />
-          <span>
-            <strong className="font-semibold text-slate-900">
-              A better experience for every plan
-            </strong>
-            , including our Free plan for getting started at no cost.
-          </span>
-        </li>
-      </ul>
-      <p className="mt-5 text-sm leading-6 text-slate-500">
-        {siteConfig.appMaintenanceMode
-          ? 'Thank you for your patience during this migration. You can keep browsing this site for plan details and FAQs in the meantime.'
-          : "We appreciate your patience while we roll out these improvements. When you continue, we'll take you to the RflowZ app so you can sign in or create your account."}
+
+      <HighlightCards />
+
+      <p className="text-sm leading-6 text-slate-500">
+        When you continue, we&apos;ll take you to the RflowZ app so you can sign
+        in or create your account.
       </p>
-    </>
+    </div>
   )
 }
 
@@ -188,8 +198,8 @@ export function UpgradeAnnouncementProvider({
               </p>
               <p className="mt-1 text-sm leading-6 text-blue-100">
                 {siteConfig.appMaintenanceMode
-                  ? "We're migrating the system to serve you better. Login and sign up are unavailable for now — please check back soon."
-                  : "We're investing in faster performance, smarter AI tools, and a smoother research workflow. Thank you for your patience while we improve the platform."}
+                  ? "We're migrating the system. Login and sign up are unavailable for now — please check back soon."
+                  : "We're investing in faster performance, smarter AI tools, and a smoother research workflow."}
               </p>
             </div>
             <button
@@ -214,63 +224,70 @@ export function UpgradeAnnouncementProvider({
           transition
           className="fixed inset-0 bg-slate-900/70 transition data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
         />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel
-            transition
-            className={clsx(
-              'w-full max-w-lg rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-slate-900/10 sm:p-8',
-              'transition data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in',
-            )}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                <UpgradeIcon className="h-6 w-6" />
+        <div className="fixed inset-0 overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4 sm:p-6">
+            <DialogPanel
+              transition
+              className={clsx(
+                'relative w-full rounded-3xl bg-white p-6 shadow-2xl ring-1 ring-slate-900/10 sm:p-8',
+                'max-w-[min(100%,56rem)]',
+                'transition data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in',
+              )}
+            >
+              <div className="flex items-start gap-4 border-b border-slate-100 pb-5">
+                <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                  <UpgradeIcon className="h-6 w-6" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <DialogTitle className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+                    We&apos;re upgrading to serve you better
+                  </DialogTitle>
+                  <p className="mt-1 text-sm font-medium text-blue-600">
+                    {siteConfig.appMaintenanceMode
+                      ? 'The RflowZ app is temporarily unavailable'
+                      : 'A better RflowZ experience is on the way'}
+                  </p>
+                </div>
               </div>
-              <div className="flex-1">
-                <DialogTitle className="font-display text-2xl font-semibold tracking-tight text-slate-900">
-                  We&apos;re upgrading to serve you better
-                </DialogTitle>
-                <p className="mt-2 text-sm font-medium text-blue-600">
-                  {siteConfig.appMaintenanceMode
-                    ? 'The RflowZ app is temporarily unavailable'
-                    : 'A better RflowZ experience is on the way'}
-                </p>
+
+              <div className="mt-5">
+                {siteConfig.appMaintenanceMode ? (
+                  <MaintenanceAnnouncementContent />
+                ) : (
+                  <StandardAnnouncementContent />
+                )}
               </div>
-            </div>
 
-            <div className="mt-6">
-              <AnnouncementContent />
-            </div>
-
-            <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              {siteConfig.appMaintenanceMode ? (
-                <button
-                  type="button"
-                  onClick={closeModal}
-                  className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
-                >
-                  Okay, got it
-                </button>
-              ) : (
-                <>
+              <div className="mt-6 flex justify-end border-t border-slate-100 pt-5">
+                {siteConfig.appMaintenanceMode ? (
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                    className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
                   >
-                    Stay on homepage
+                    Okay, got it
                   </button>
-                  <button
-                    type="button"
-                    onClick={continueToApp}
-                    className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
-                  >
-                    Continue to RflowZ app
-                  </button>
-                </>
-              )}
-            </div>
-          </DialogPanel>
+                ) : (
+                  <div className="flex w-full flex-col-reverse gap-3 sm:w-auto sm:flex-row">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                    >
+                      Stay on homepage
+                    </button>
+                    <button
+                      type="button"
+                      onClick={continueToApp}
+                      className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
+                    >
+                      Continue to RflowZ app
+                    </button>
+                  </div>
+                )}
+              </div>
+            </DialogPanel>
+          </div>
         </div>
       </Dialog>
     </UpgradeAnnouncementContext.Provider>
