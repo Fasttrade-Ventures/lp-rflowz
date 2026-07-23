@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 import { UpgradeAnnouncementProvider } from '@/components/UpgradeAnnouncement'
 import { siteConfig } from '@/lib/site'
 import '@/styles/tailwind.css'
@@ -81,6 +82,7 @@ export default function RootLayout({
       )}
     >
       <body className="flex h-full flex-col">
+        <GoogleAnalytics />
         <UpgradeAnnouncementProvider>{children}</UpgradeAnnouncementProvider>
       </body>
     </html>

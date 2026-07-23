@@ -11,6 +11,7 @@ export const siteConfig = {
   ogImage: 'https://app.rflowz.com/images/rflowz-og-image.png',
   locale: 'en_MY',
   email: 'support@rflowz.com',
+  googleAnalyticsId: 'G-HPFJDV88NG',
   keywords: [
     'research proposal',
     'AI writing',
