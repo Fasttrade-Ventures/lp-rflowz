@@ -5,8 +5,12 @@
 ## Official URLs
 
 - Website: https://rflowz.com
-- App (sign up / login): https://app.rflowz.com
+- App (sign up / login): https://app.rflowz.com — temporarily unavailable during system migration
 - Terms and policies: https://rflowz.com/terms-and-policies
+
+## Service status
+
+app.rflowz.com is temporarily not working while the platform is being migrated. Login and sign up are unavailable until the migration is complete.
 
 ## Who it is for
 

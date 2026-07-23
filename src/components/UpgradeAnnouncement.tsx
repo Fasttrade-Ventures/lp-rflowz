@@ -17,12 +17,14 @@ import {
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
+import { siteConfig } from '@/lib/site'
+
 const BANNER_STORAGE_KEY = 'rflowz-upgrade-banner-dismissed'
 
 export function isAppRflowzUrl(href: string | undefined): boolean {
   if (!href || typeof href !== 'string') return false
   try {
-    const url = new URL(href, 'https://rflowz.com')
+    const url = new URL(href, siteConfig.url)
     return url.hostname === 'app.rflowz.com'
   } catch {
     return href.includes('app.rflowz.com')
@@ -65,10 +67,29 @@ function UpgradeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+function MaintenanceNotice() {
+  return (
+    <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
+      <p className="font-semibold">app.rflowz.com is temporarily not working</p>
+      <p className="mt-1">
+        Login and sign up are unavailable while we migrate the system. Please
+        check back soon — we&apos;ll have the app running again shortly.
+      </p>
+    </div>
+  )
+}
+
 function AnnouncementContent() {
   return (
     <>
-      <p className="text-base leading-7 text-slate-600">
+      {siteConfig.appMaintenanceMode ? <MaintenanceNotice /> : null}
+
+      <p
+        className={clsx(
+          'text-base leading-7 text-slate-600',
+          siteConfig.appMaintenanceMode && 'mt-5',
+        )}
+      >
         RflowZ is going through an important platform upgrade designed to deliver
         a faster, more reliable, and more powerful research proposal experience
         for students, academics, and research teams.
@@ -103,9 +124,9 @@ function AnnouncementContent() {
         </li>
       </ul>
       <p className="mt-5 text-sm leading-6 text-slate-500">
-        We appreciate your patience while we roll out these improvements. When
-        you continue, we&apos;ll take you to the RflowZ app so you can sign in
-        or create your account.
+        {siteConfig.appMaintenanceMode
+          ? 'Thank you for your patience during this migration. You can keep browsing this site for plan details and FAQs in the meantime.'
+          : "We appreciate your patience while we roll out these improvements. When you continue, we'll take you to the RflowZ app so you can sign in or create your account."}
       </p>
     </>
   )
@@ -142,7 +163,7 @@ export function UpgradeAnnouncementProvider({
   }, [])
 
   const continueToApp = useCallback(() => {
-    if (!pendingUrl) return
+    if (!pendingUrl || siteConfig.appMaintenanceMode) return
     window.location.href = pendingUrl
   }, [pendingUrl])
 
@@ -161,12 +182,14 @@ export function UpgradeAnnouncementProvider({
             <UpgradeIcon className="mt-0.5 h-6 w-6 flex-none text-blue-100 sm:mt-0" />
             <div className="flex-1">
               <p className="font-display text-sm font-semibold text-white sm:text-base">
-                We&apos;re upgrading RflowZ to serve you better
+                {siteConfig.appMaintenanceMode
+                  ? 'app.rflowz.com is temporarily not working'
+                  : "We're upgrading RflowZ to serve you better"}
               </p>
               <p className="mt-1 text-sm leading-6 text-blue-100">
-                We&apos;re investing in faster performance, smarter AI tools,
-                and a smoother research workflow. Thank you for your patience
-                while we improve the platform for you.
+                {siteConfig.appMaintenanceMode
+                  ? "We're migrating the system to serve you better. Login and sign up are unavailable for now — please check back soon."
+                  : "We're investing in faster performance, smarter AI tools, and a smoother research workflow. Thank you for your patience while we improve the platform."}
               </p>
             </div>
             <button
@@ -182,7 +205,11 @@ export function UpgradeAnnouncementProvider({
 
       {children}
 
-      <Dialog open={pendingUrl !== null} onClose={closeModal} className="relative z-[70]">
+      <Dialog
+        open={pendingUrl !== null}
+        onClose={closeModal}
+        className="relative z-[70]"
+      >
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-slate-900/70 transition data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
@@ -204,7 +231,9 @@ export function UpgradeAnnouncementProvider({
                   We&apos;re upgrading to serve you better
                 </DialogTitle>
                 <p className="mt-2 text-sm font-medium text-blue-600">
-                  A better RflowZ experience is on the way
+                  {siteConfig.appMaintenanceMode
+                    ? 'The RflowZ app is temporarily unavailable'
+                    : 'A better RflowZ experience is on the way'}
                 </p>
               </div>
             </div>
@@ -214,20 +243,32 @@ export function UpgradeAnnouncementProvider({
             </div>
 
             <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-              <button
-                type="button"
-                onClick={closeModal}
-                className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50"
-              >
-                Stay on homepage
-              </button>
-              <button
-                type="button"
-                onClick={continueToApp}
-                className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
-              >
-                Continue to RflowZ app
-              </button>
+              {siteConfig.appMaintenanceMode ? (
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
+                >
+                  Okay, got it
+                </button>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                  >
+                    Stay on homepage
+                  </button>
+                  <button
+                    type="button"
+                    onClick={continueToApp}
+                    className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
+                  >
+                    Continue to RflowZ app
+                  </button>
+                </>
+              )}
             </div>
           </DialogPanel>
         </div>

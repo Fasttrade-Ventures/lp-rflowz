@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
+import { FooterNavLink } from '@/components/FooterNavLink'
 import { siteConfig } from '@/lib/site'
 import Image from 'next/image'
 
@@ -32,13 +33,13 @@ export function Footer() {
             className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3"
           >
             {footerLinks.map((link) => (
-              <Link
+              <FooterNavLink
                 key={link.label}
                 href={link.href}
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
                 {link.label}
-              </Link>
+              </FooterNavLink>
             ))}
           </nav>
           <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-6 text-slate-500">
