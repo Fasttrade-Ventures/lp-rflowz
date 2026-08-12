@@ -78,45 +78,58 @@ export default function TermsAndPolicies() {
               </p>
               <ul className="mt-4 list-disc pl-5">
                 <li>Free Plan: $0/month (auto-assigned on registration)</li>
-                <li>
-                  Starter Plan: $3.99/month or $3.29/month (billed annually)
-                </li>
-                <li>
-                  Standard Plan: $5.99/month or $4.99/month (billed annually)
-                </li>
-                <li>
-                  Professional Plan: $9.99/month or $7.99/month (billed
-                  annually)
-                </li>
+                <li>Starter Plan: $3.99/month (billed annually)</li>
+                <li>Standard Plan: $4.99/month (billed annually)</li>
+                <li>Professional Plan: $7.99/month (billed annually)</li>
               </ul>
               <p className="mt-4">Features of each plan:</p>
               <h3 className="mt-4 text-xl font-semibold">Free Plan</h3>
               <ul className="mt-2 list-disc pl-5">
-                <li>Up to 2 proposal generations per month</li>
-                <li>Limited AI writing assistance</li>
-                <li>Watermarked DOCX and PDF export</li>
-                <li>1 basic template</li>
+                <li>1 proposal per month</li>
+                <li>Unlimited Ask Prof Z included</li>
+                <li>RAG: 10 documents per month (policy / literature)</li>
+                <li>Export limit: 5 times per month</li>
+                <li>Watermarked DOCX/PDF export</li>
+                <li>1 document version per project</li>
               </ul>
               <h3 className="mt-4 text-xl font-semibold">Starter Plan</h3>
               <ul className="mt-2 list-disc pl-5">
-                <li>Access to basic proposal templates</li>
+                <li>Unlimited Ask Prof Z included</li>
+                <li>
+                  Unlimited RAG — academic document grounding (policy /
+                  literature)
+                </li>
                 <li>AI-guided research questions formulation</li>
                 <li>Up to 10 proposal generations per month</li>
+                <li>Up to 30 exports per month</li>
                 <li>Email support</li>
                 <li>Help center access</li>
               </ul>
               <h3 className="mt-4 text-xl font-semibold">Standard Plan</h3>
               <ul className="mt-2 list-disc pl-5">
-                <li>Access to all proposal templates</li>
+                <li>Unlimited Ask Prof Z included</li>
+                <li>
+                  Unlimited RAG — academic document grounding (policy /
+                  literature)
+                </li>
                 <li>AI-driven support for literature review structuring</li>
                 <li>Up to 30 proposal generations per month</li>
                 <li>PowerPoint (PPTX) export</li>
                 <li>Email support</li>
                 <li>Priority help center access</li>
                 <li>Priority proposal generation queue</li>
+                <li>
+                  Full access to TreZ features — AI-assisted thematic review
+                  paper writing, fully RAG-integrated (coming soon)
+                </li>
               </ul>
               <h3 className="mt-4 text-xl font-semibold">Professional Plan</h3>
               <ul className="mt-2 list-disc pl-5">
+                <li>Unlimited Ask Prof Z included</li>
+                <li>
+                  Unlimited RAG — academic document grounding (policy /
+                  literature)
+                </li>
                 <li>Unlimited proposal generations per month</li>
                 <li>
                   Advanced AI-guided proposal structure and referencing tools
@@ -125,12 +138,21 @@ export default function TermsAndPolicies() {
                 <li>Premium email and chat support</li>
                 <li>Dedicated support for research methodologies</li>
                 <li>Professional-grade proposal formatting tools</li>
+                <li>
+                  Full access to TreZ features — AI-assisted thematic review
+                  paper writing, fully RAG-integrated (coming soon)
+                </li>
+                <li>
+                  Full access to TAM features — upload your transcripts and let
+                  AI assist with thematic analysis (coming soon)
+                </li>
               </ul>
               <p className="mt-4">
                 All payments are non-refundable except as required by law. Paid
                 plans include a 5-day free trial. Users can choose between
                 monthly and annual billing cycles, with annual billing offering
-                a discount.
+                a discount. Standard and Professional subscription options may
+                show as coming soon while checkout is finalized.
               </p>
             </section>
 

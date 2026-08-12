@@ -1,9 +1,8 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Container } from '@/components/Container'
-import { FooterNavLink } from '@/components/FooterNavLink'
 import { siteConfig } from '@/lib/site'
-import Image from 'next/image'
 
 const footerLinks = [
   { label: 'Features', href: '/#features' },
@@ -33,13 +32,13 @@ export function Footer() {
             className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3"
           >
             {footerLinks.map((link) => (
-              <FooterNavLink
+              <Link
                 key={link.label}
                 href={link.href}
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
                 {link.label}
-              </FooterNavLink>
+              </Link>
             ))}
           </nav>
           <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-6 text-slate-500">

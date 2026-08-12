@@ -17,7 +17,7 @@ export const faqs: FaqItem[] = [
   {
     question: 'Is there a free plan?',
     answer:
-      'Yes. Every new account starts on the Free plan with up to 2 proposal generations, limited AI writing assistance, and 2 watermarked DOCX/PDF exports per month — no credit card required.',
+      'Yes. Every new account starts on the Free plan with 1 proposal per month, Unlimited Ask Prof Z, RAG for up to 10 documents, and 5 watermarked DOCX/PDF exports per month — no credit card required.',
   },
   {
     question: 'Do paid plans include a free trial?',

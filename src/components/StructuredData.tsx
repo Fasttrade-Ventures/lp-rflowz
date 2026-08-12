@@ -44,8 +44,9 @@ export function StructuredData() {
     })),
     featureList: [
       'AI-assisted research proposal writing',
+      'Unlimited Ask Prof Z',
+      'RAG academic document grounding',
       'Mendeley citation import',
-      'Customizable proposal templates',
       'DOCX, PDF, and PPTX export',
       'Free plan on registration',
     ],

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { planComparison } from '@/lib/plans'
+import { planComparison, pricingPlans } from '@/lib/plans'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -65,20 +65,22 @@ function Plan({
   description,
   href,
   features,
-  notincludetitle,
-  notinclude,
+  notIncluded,
   featured = false,
   isFree = false,
+  footerNote,
+  comingSoonNote,
 }: {
   name: string
   price: string
   description: string
   href: string
   features: Array<string>
-  notincludetitle: string
-  notinclude: Array<string>
+  notIncluded: Array<string>
   featured?: boolean
   isFree?: boolean
+  footerNote?: string
+  comingSoonNote?: string
 }) {
   return (
     <article
@@ -172,15 +174,13 @@ function Plan({
           ))}
         </ul>
 
-        {notinclude.length > 0 ? (
+        {notIncluded.length > 0 ? (
           <div className="mt-6 border-t border-white/10 pt-6">
-            {notincludetitle ? (
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                {notincludetitle}
-              </p>
-            ) : null}
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              Not included
+            </p>
             <ul role="list" className="mt-4 flex flex-col gap-y-2.5">
-              {notinclude.map((item) => (
+              {notIncluded.map((item) => (
                 <li
                   key={item}
                   className="flex gap-3 text-sm leading-6 text-slate-400"
@@ -203,6 +203,28 @@ function Plan({
       >
         Get started
       </Button>
+
+      {comingSoonNote ? (
+        <p
+          className={clsx(
+            'mt-3 text-center text-xs leading-5',
+            featured ? 'text-blue-100' : 'text-slate-400',
+          )}
+        >
+          {comingSoonNote}
+        </p>
+      ) : null}
+
+      {footerNote ? (
+        <p
+          className={clsx(
+            'mt-3 text-center text-xs leading-5',
+            featured ? 'text-blue-100' : 'text-slate-400',
+          )}
+        >
+          {footerNote}
+        </p>
+      ) : null}
     </article>
   )
 }
@@ -228,85 +250,22 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 xl:max-w-6xl xl:mx-auto xl:gap-10">
-          <Plan
-            isFree
-            name="Free"
-            price="Free"
-            description="Get started with limited proposal generation and watermarked exports."
-            href="https://app.rflowz.com/register"
-            features={[
-              'Up to 2 proposal generations per month',
-              'Limited AI writing assistance',
-              'Watermarked DOCX and PDF export',
-              '1 basic template',
-            ]}
-            notincludetitle="Not included"
-            notinclude={[
-              'PowerPoint export',
-              'Framework generator',
-              'Collaboration',
-              'Unwatermarked exports',
-            ]}
-          />
-
-          <Plan
-            name="Starter"
-            price="$3.29"
-            description="Perfect for beginners and occasional users getting started with research proposal formulation."
-            href="https://app.rflowz.com/register"
-            features={[
-              'Access to basic proposal templates',
-              'AI-guided research questions formulation',
-              'Up to 10 proposal generations per month',
-              'Email support',
-              'Help center access',
-            ]}
-            notincludetitle="Not included"
-            notinclude={[
-              'AI-driven support for literature review structuring',
-              'Priority proposal generation queue',
-              'Advanced AI-guided proposal structure and referencing tools',
-            ]}
-          />
-
-          <Plan
-            featured
-            name="Standard"
-            price="$4.99"
-            description="Ideal for academic professionals and regular researchers who need enhanced tools and support."
-            href="https://app.rflowz.com/register"
-            features={[
-              'Access to all proposal templates',
-              'AI-driven support for literature review structuring',
-              'Up to 30 proposal generations per month',
-              'PowerPoint (PPTX) export',
-              'Email support',
-              'Priority help center access',
-              'Priority proposal generation queue',
-            ]}
-            notincludetitle="Not included"
-            notinclude={[
-              'Advanced AI-guided proposal structure and referencing tools',
-            ]}
-          />
-
-          <Plan
-            name="Professional"
-            price="$7.99"
-            description="Best for large-scale research projects and experienced researchers."
-            href="https://app.rflowz.com/register"
-            features={[
-              'Unlimited proposal generations per month',
-              'Advanced AI-guided proposal structure and referencing tools',
-              'PowerPoint (PPTX) export',
-              'Premium email and chat support',
-              'Dedicated support for research methodologies',
-              'Professional-grade proposal formatting tools',
-            ]}
-            notincludetitle=""
-            notinclude={[]}
-          />
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mx-auto xl:max-w-6xl xl:gap-10">
+          {pricingPlans.map((plan) => (
+            <Plan
+              key={plan.name}
+              name={plan.name}
+              price={plan.price}
+              description={plan.description}
+              href={plan.href}
+              features={plan.features}
+              notIncluded={plan.notIncluded}
+              featured={plan.featured}
+              isFree={plan.isFree}
+              footerNote={plan.footerNote}
+              comingSoonNote={plan.comingSoonNote}
+            />
+          ))}
         </div>
 
         <div className="mx-auto mt-16 max-w-5xl overflow-x-auto xl:max-w-6xl">
@@ -349,10 +308,7 @@ export function Pricing() {
                   key={plan.name}
                   className="border-b border-slate-800/80 even:bg-slate-800/30"
                 >
-                  <th
-                    scope="row"
-                    className="px-4 py-3 font-medium text-white"
-                  >
+                  <th scope="row" className="px-4 py-3 font-medium text-white">
                     {plan.name}
                   </th>
                   <td className="px-4 py-3">{plan.monthly}</td>
@@ -369,7 +325,8 @@ export function Pricing() {
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-slate-500">
           All paid plans shown at annual billing. Monthly billing is also
-          available in the app.
+          available in the app. Standard and Professional subscription checkout
+          is coming soon.
         </p>
       </Container>
     </section>

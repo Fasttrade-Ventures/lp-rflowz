@@ -11,11 +11,6 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { NavLink } from '@/components/NavLink'
-import {
-  isAppRflowzUrl,
-  useUpgradeAnnouncement,
-} from '@/components/UpgradeAnnouncement'
 import Image from 'next/image'
 
 function MobileNavLink({
@@ -25,21 +20,6 @@ function MobileNavLink({
   href: string
   children: React.ReactNode
 }) {
-  const { openForUrl } = useUpgradeAnnouncement()
-
-  if (isAppRflowzUrl(href)) {
-    return (
-      <PopoverButton
-        as="button"
-        type="button"
-        className="block w-full p-2 text-left"
-        onClick={() => openForUrl(href)}
-      >
-        {children}
-      </PopoverButton>
-    )
-  }
-
   return (
     <PopoverButton as={Link} href={href} className="block w-full p-2">
       {children}
@@ -107,7 +87,6 @@ export function Header() {
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="/" aria-label="RflowZ home">
-              {/* <Logo className="h-10 w-auto" /> */}
               <Image
                 src="/rflowz-black.png"
                 alt="RflowZ logo"
