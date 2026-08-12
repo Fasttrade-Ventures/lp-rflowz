@@ -22,6 +22,11 @@ export function StructuredData() {
 
   if (siteConfig.sameAs.length > 0) {
     organization.sameAs = [...siteConfig.sameAs]
+    organization.founder = {
+      '@type': 'Person',
+      name: siteConfig.founder.name,
+      sameAs: [...siteConfig.sameAs],
+    }
   }
 
   const website = {

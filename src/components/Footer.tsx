@@ -34,6 +34,10 @@ const companyLinks = [
   { label: 'Contact', href: '/contact' },
   { label: 'Terms & policies', href: '/terms-and-policies' },
   { label: 'Sign in', href: `${siteConfig.appUrl}/login` },
+  ...siteConfig.social.map((profile) => ({
+    label: profile.label,
+    href: profile.href,
+  })),
 ]
 
 export function Footer() {
@@ -86,16 +90,30 @@ export function Footer() {
             <nav aria-label="Company">
               <h2 className="text-sm font-semibold text-slate-900">Company</h2>
               <ul className="mt-4 space-y-3">
-                {companyLinks.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-600 hover:text-slate-900"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {companyLinks.map((link) => {
+                  const isExternal = link.href.startsWith('http')
+                  return (
+                    <li key={link.label}>
+                      {isExternal ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-slate-600 hover:text-slate-900"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-sm text-slate-600 hover:text-slate-900"
+                        >
+                          {link.label}
+                        </Link>
+                      )}
+                    </li>
+                  )
+                })}
               </ul>
             </nav>
           </div>

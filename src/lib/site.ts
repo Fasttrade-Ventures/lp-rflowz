@@ -10,8 +10,25 @@ export const siteConfig = {
   locale: 'en_MY',
   email: 'support@rflowz.com',
   googleAnalyticsId: 'G-HPFJDV88NG',
-  /** Official profiles only — omit empty sameAs in schema when blank */
-  sameAs: [] as readonly string[],
+  /** Official profiles for Organization sameAs / E-E-A-T */
+  sameAs: [
+    'https://www.youtube.com/@ZackZairulMN',
+    'https://www.linkedin.com/in/mohd-zairul-phd-p-tech-22437856/',
+  ] as const,
+  social: [
+    {
+      label: 'YouTube',
+      href: 'https://www.youtube.com/@ZackZairulMN',
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/mohd-zairul-phd-p-tech-22437856/',
+    },
+  ] as const,
+  founder: {
+    name: 'Mohd Zairul',
+    credentials: 'PhD, P.Tech',
+  } as const,
   keywords: [
     'AI research proposal writer',
     'research proposal generator',

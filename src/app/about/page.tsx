@@ -32,6 +32,12 @@ export default function AboutPage() {
         legalName: siteConfig.legalName,
         url: siteConfig.url,
         email: siteConfig.email,
+        sameAs: [...siteConfig.sameAs],
+        founder: {
+          '@type': 'Person',
+          name: siteConfig.founder.name,
+          sameAs: [...siteConfig.sameAs],
+        },
       },
     },
   ]
@@ -73,6 +79,27 @@ export default function AboutPage() {
             We do not market Mendeley as a current integration. TreZ and TAM are
             listed as coming soon on higher plans — not live engines today. We
             do not fabricate citations or review ratings for marketing.
+          </p>
+
+          <h2 className="font-display text-2xl text-slate-900">Founder</h2>
+          <p>
+            {siteConfig.name} is led by {siteConfig.founder.name} (
+            {siteConfig.founder.credentials}). Follow updates and academic
+            content on{' '}
+            {siteConfig.social.map((profile, index) => (
+              <span key={profile.href}>
+                {index > 0 ? ' and ' : null}
+                <a
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:text-blue-800"
+                >
+                  {profile.label}
+                </a>
+              </span>
+            ))}
+            .
           </p>
 
           <h2 className="font-display text-2xl text-slate-900">Legal entity</h2>

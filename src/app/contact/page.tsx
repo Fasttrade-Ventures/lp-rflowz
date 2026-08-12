@@ -70,6 +70,22 @@ export default function ContactPage() {
               Sign in
             </Button>
           </div>
+
+          <h2 className="font-display text-2xl text-slate-900">Follow RflowZ</h2>
+          <ul className="space-y-2">
+            {siteConfig.social.map((profile) => (
+              <li key={profile.href}>
+                <a
+                  href={profile.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 hover:text-blue-800"
+                >
+                  {profile.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <SeoRelatedLinks links={page.relatedLinks} />
