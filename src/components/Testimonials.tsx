@@ -1,6 +1,10 @@
+'use client'
+
+import { useRef } from 'react'
 import Image from 'next/image'
 
 import { Container } from '@/components/Container'
+import { gsap, useGSAP } from '@/lib/gsap'
 import avatarImage1 from '@/images/avatars/avatar-1.png'
 import avatarImage2 from '@/images/avatars/avatar-2.png'
 import avatarImage3 from '@/images/avatars/avatar-3.png'
@@ -50,19 +54,63 @@ function QuoteIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 export function Testimonials() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLUListElement>(null)
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from(headingRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        })
+
+        if (cardsRef.current) {
+          gsap.from(Array.from(cardsRef.current.children), {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          })
+        }
+      })
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="testimonials"
       aria-label="What RflowZ customers are saying"
       className="bg-slate-50 py-20 sm:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-2xl md:text-center">
+        <div ref={headingRef} className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
             Trusted by researchers
           </h2>
         </div>
         <ul
+          ref={cardsRef}
           role="list"
           className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3"
         >

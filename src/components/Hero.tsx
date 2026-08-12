@@ -1,13 +1,91 @@
+'use client'
+
+import { useRef } from 'react'
+
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { gsap, useGSAP } from '@/lib/gsap'
 
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const underlineRef = useRef<SVGSVGElement>(null)
+  const taglineRef = useRef<HTMLParagraphElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+        // Headline words fade up
+        tl.from(headlineRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 0.8,
+        })
+
+        // Underline SVG draws in from left
+        tl.from(
+          underlineRef.current,
+          {
+            scaleX: 0,
+            transformOrigin: 'left center',
+            duration: 0.6,
+            ease: 'power2.inOut',
+          },
+          '-=0.4',
+        )
+
+        // Tagline fades up
+        tl.from(
+          taglineRef.current,
+          {
+            opacity: 0,
+            y: 24,
+            duration: 0.6,
+          },
+          '-=0.3',
+        )
+
+        // CTA scales up with bounce
+        tl.from(
+          ctaRef.current,
+          {
+            opacity: 0,
+            scale: 0.85,
+            duration: 0.6,
+            ease: 'back.out(1.4)',
+          },
+          '-=0.2',
+        )
+
+        // Continuous ambient float on the CTA
+        gsap.to(ctaRef.current, {
+          y: -12,
+          duration: 3,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+        })
+      })
+    },
+    { scope: containerRef },
+  )
+
   return (
-    <Container className="pb-16 pt-20 text-center lg:pt-32">
-      <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+    <div ref={containerRef}>
+      <Container className="pb-16 pt-20 text-center lg:pt-32">
+      <h1
+        ref={headlineRef}
+        className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl"
+      >
         Build Research Proposals Effortlessly with
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
+            ref={underlineRef}
             aria-hidden="true"
             viewBox="0 0 418 42"
             className="absolute left-0 top-2/3 h-[0.58em] w-full fill-blue-300/70"
@@ -18,16 +96,20 @@ export function Hero() {
           <span className="relative"> RflowZ</span>
         </span>{' '}
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+      <p
+        ref={taglineRef}
+        className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700"
+      >
         Streamline your proposal writing with smart AI tools and seamless
         citation management from Mendeley.
       </p>
-      <div className="mt-10 flex justify-center gap-x-6">
+      <div ref={ctaRef} className="mt-10 flex justify-center gap-x-6">
         <Button href="https://app.rflowz.com/register">
           Start Your Proposal Now
         </Button>
       </div>
       <div className="mt-36 lg:mt-44"></div>
-    </Container>
+      </Container>
+    </div>
   )
 }

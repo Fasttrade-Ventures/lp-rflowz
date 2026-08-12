@@ -6,6 +6,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { AnimateIn } from '@/components/AnimateIn'
 import AutoFormatting from '@/images/screenshots/AutoFormatting.png'
 import Guided from '@/images/screenshots/Guided.png'
 import ProvenFramework from '@/images/screenshots/ProvenFramework.png'
@@ -252,13 +253,15 @@ export function SecondaryFeatures() {
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Streamline your research paper writing process.
-          </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
-            Our tools and features are designed to make writing research papers
-            easier, faster, and more efficient than ever before.
-          </p>
+          <AnimateIn>
+            <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+              Streamline your research paper writing process.
+            </h2>
+            <p className="mt-4 text-lg tracking-tight text-slate-700">
+              Our tools and features are designed to make writing research papers
+              easier, faster, and more efficient than ever before.
+            </p>
+          </AnimateIn>
         </div>
         <FeaturesMobile />
         <FeaturesDesktop />

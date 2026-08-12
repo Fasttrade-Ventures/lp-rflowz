@@ -6,6 +6,7 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { AnimateIn } from '@/components/AnimateIn'
 import backgroundImage from '@/images/background-features.jpg'
 import MendeleyIntegration from '@/images/screenshots/Mendeley-Integration.png'
 import screenshotPayroll from '@/images/screenshots/AI-Assisted Writing.png'
@@ -79,9 +80,11 @@ export function PrimaryFeatures() {
       />
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-            Core Features
-          </h2>
+          <AnimateIn>
+            <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+              Core Features
+            </h2>
+          </AnimateIn>
         </div>
         <TabGroup
           className="mt-16 grid grid-cols-1 items-center gap-y-2 pt-10 sm:gap-y-6 md:mt-20 lg:grid-cols-12 lg:pt-0"

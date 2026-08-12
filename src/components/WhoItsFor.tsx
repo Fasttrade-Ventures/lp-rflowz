@@ -1,4 +1,9 @@
+'use client'
+
+import { useRef } from 'react'
+
 import { Container } from '@/components/Container'
+import { gsap, useGSAP } from '@/lib/gsap'
 
 const audiences = [
   {
@@ -19,14 +24,57 @@ const audiences = [
 ]
 
 export function WhoItsFor() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLUListElement>(null)
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from(headingRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        })
+
+        if (cardsRef.current) {
+          gsap.from(Array.from(cardsRef.current.children), {
+            opacity: 0,
+            y: 40,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          })
+        }
+      })
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="who-its-for"
       aria-labelledby="who-its-for-title"
       className="border-y border-slate-200 bg-white py-20 sm:py-24"
     >
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
+        <div ref={headingRef} className="mx-auto max-w-3xl text-center">
           <h2
             id="who-its-for-title"
             className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl"
@@ -40,6 +88,7 @@ export function WhoItsFor() {
           </p>
         </div>
         <ul
+          ref={cardsRef}
           role="list"
           className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3"
         >

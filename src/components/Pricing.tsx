@@ -1,8 +1,12 @@
+'use client'
+
+import { useRef } from 'react'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { planComparison, pricingPlans } from '@/lib/plans'
+import { gsap, useGSAP } from '@/lib/gsap'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -230,14 +234,71 @@ function Plan({
 }
 
 export function Pricing() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const tableRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from(headingRef.current, {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        })
+
+        if (cardsRef.current) {
+          gsap.from(Array.from(cardsRef.current.children), {
+            opacity: 0,
+            scale: 0.94,
+            duration: 0.6,
+            ease: 'power3.out',
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          })
+        }
+
+        gsap.from(tableRef.current, {
+          opacity: 0,
+          y: 30,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: tableRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        })
+      })
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="pricing"
       aria-label="Pricing"
       className="bg-slate-900 py-20 sm:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-3xl md:text-center">
+        <div ref={headingRef} className="mx-auto max-w-3xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             <span className="relative whitespace-nowrap">
               <SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-blue-400" />
@@ -250,7 +311,10 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mx-auto xl:max-w-6xl xl:gap-10">
+        <div
+          ref={cardsRef}
+          className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mx-auto xl:max-w-6xl xl:gap-10"
+        >
           {pricingPlans.map((plan) => (
             <Plan
               key={plan.name}
@@ -268,7 +332,7 @@ export function Pricing() {
           ))}
         </div>
 
-        <div className="mx-auto mt-16 max-w-5xl overflow-x-auto xl:max-w-6xl">
+        <div ref={tableRef} className="mx-auto mt-16 max-w-5xl overflow-x-auto xl:max-w-6xl">
           <h3 className="text-center font-display text-xl text-white">
             Plan comparison
           </h3>

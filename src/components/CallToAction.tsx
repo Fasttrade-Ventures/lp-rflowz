@@ -1,12 +1,45 @@
+'use client'
+
+import { useRef } from 'react'
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { gsap, useGSAP } from '@/lib/gsap'
 import backgroundImage from '@/images/background-call-to-action.jpg'
 
 export function CallToAction() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        if (contentRef.current) {
+          gsap.from(Array.from(contentRef.current.children), {
+            opacity: 0,
+            y: 30,
+            duration: 0.7,
+            ease: 'power3.out',
+            stagger: 0.15,
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+              once: true,
+            },
+          })
+        }
+      })
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="get-started-today"
       className="relative overflow-hidden bg-blue-600 py-32"
     >
@@ -19,14 +52,10 @@ export function CallToAction() {
         unoptimized
       />
       <Container className="relative">
-        <div className="mx-auto max-w-lg text-center">
+        <div ref={contentRef} className="mx-auto max-w-lg text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             Get started today
           </h2>
-          {/* <p className="mt-4 text-lg tracking-tight text-white">
-            It’s time to take control of your books. Buy our software so you can
-            feel like you’re doing something productive.
-          </p> */}
           <Button
             href="https://app.rflowz.com/register"
             color="white"
