@@ -76,12 +76,9 @@ function MobileNavigation() {
         <MobileNavLink href="/#how-it-works">How it works</MobileNavLink>
         <MobileNavLink href="/#pricing">Pricing</MobileNavLink>
         <MobileNavLink href="/#faq">FAQ</MobileNavLink>
-        <MobileNavLink href="/ai-research-proposal-writer">
-          AI proposal writer
-        </MobileNavLink>
-        <MobileNavLink href="/openalex-literature-review">
-          OpenAlex literature
-        </MobileNavLink>
+        <MobileNavLink href="/resources">Resources</MobileNavLink>
+        <MobileNavLink href="/about">About</MobileNavLink>
+        <MobileNavLink href="/contact">Contact</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
         <MobileNavLink href="https://app.rflowz.com/login">
           Sign in
@@ -108,7 +105,7 @@ export function Header() {
             <div className="hidden md:flex md:gap-x-6">
               <NavLink href="/#features">Features</NavLink>
               <NavLink href="/#pricing">Pricing</NavLink>
-              <NavLink href="/ai-research-proposal-writer">Resources</NavLink>
+              <NavLink href="/resources">Resources</NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">

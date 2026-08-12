@@ -6,30 +6,12 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
-const path = '/openalex-literature-review'
-const title = 'OpenAlex Literature Review with RAG'
-const description =
-  'Search OpenAlex, attach sources in your RflowZ Library, and use RAG-grounded Ask Prof Z for literature synthesis with citation integrity checks.'
+const page = seoPages.openAlex
 
-export const metadata: Metadata = {
-  title,
-  description,
-  keywords: [
-    'OpenAlex literature review',
-    'AI literature review with citations',
-    'grounded academic writing',
-    'RAG academic writing',
-  ],
-  alternates: { canonical: path },
-  openGraph: {
-    title: `${title} | ${siteConfig.name}`,
-    description,
-    url: `${siteConfig.url}${path}`,
-    type: 'website',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(page)
 
 const faqs = [
   {
@@ -47,6 +29,11 @@ const faqs = [
     answer:
       'Yes. The Library supports academic OpenAlex results plus policy and media sources so you can ground proposals with the evidence your topic needs.',
   },
+  {
+    question: 'Why is Ask Prof Z disabled on a sub-topic?',
+    answer:
+      'Ask Prof Z for grounded literature synthesis unlocks after enough usable sources are attached (typically at least two verified academic sources). Attach OpenAlex results, then generate.',
+  },
 ]
 
 export default function OpenAlexLiteratureReviewPage() {
@@ -54,10 +41,14 @@ export default function OpenAlexLiteratureReviewPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: title,
-      description,
-      url: `${siteConfig.url}${path}`,
-      isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+      name: page.title,
+      description: page.description,
+      url: `${siteConfig.url}${page.path}`,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     {
       '@context': 'https://schema.org',
@@ -74,13 +65,14 @@ export default function OpenAlexLiteratureReviewPage() {
     <SeoPageLayout
       breadcrumbs={[
         { name: 'Home', href: '/' },
-        { name: title, href: path },
+        { name: 'Resources', href: '/resources' },
+        { name: page.h1, href: page.path },
       ]}
       jsonLd={jsonLd}
     >
       <article className="mx-auto max-w-3xl">
         <h1 className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl">
-          OpenAlex literature review with grounded RAG
+          {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
           Build literature that cites real sources. Search OpenAlex, attach
@@ -103,32 +95,29 @@ export default function OpenAlexLiteratureReviewPage() {
               Review citations, then continue to framework and proposal export.
             </li>
           </ol>
+
           <h2 className="font-display text-2xl text-slate-900">
-            Why grounding matters
+            RAG vs ungrounded AI writing
           </h2>
           <p>
-            Generic AI can hallucinate papers. RflowZ is designed so literature
-            generation is tied to sources you selected, with integrity checks
-            that help catch unresolved or mismatched citations before you
-            export DOCX or PDF.
+            Generic chat tools can invent papers. RAG grounding ties Ask Prof Z
+            to sources you selected. Citation integrity checks then help catch
+            unresolved or mismatched references before you export DOCX or PDF.
+          </p>
+
+          <h2 className="font-display text-2xl text-slate-900">
+            Academic + policy/media Library
+          </h2>
+          <p>
+            Many proposals need more than journal articles. RflowZ Library
+            supports OpenAlex academic search alongside policy and media sources
+            so your evidence base matches the research problem.
           </p>
         </section>
 
         <SeoFaqSection faqs={faqs} />
         <SeoCta title="Ground your next literature review" />
-        <SeoRelatedLinks
-          links={[
-            {
-              href: '/ai-research-proposal-writer',
-              label: 'AI research proposal writer',
-            },
-            {
-              href: '/how-to-write-a-research-proposal',
-              label: 'How to write a research proposal',
-            },
-            { href: '/thesis-proposal', label: 'Thesis proposal' },
-          ]}
-        />
+        <SeoRelatedLinks links={page.relatedLinks} />
       </article>
     </SeoPageLayout>
   )

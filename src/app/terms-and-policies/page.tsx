@@ -3,15 +3,10 @@ import { type Metadata } from 'next'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Terms and Policies',
-  description: `Read the terms, privacy policies, and subscription details for ${siteConfig.name} research proposal software.`,
-  alternates: {
-    canonical: '/terms-and-policies',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(seoPages.terms)
 
 export default function TermsAndPolicies() {
   return (

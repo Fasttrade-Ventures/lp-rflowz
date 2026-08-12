@@ -6,30 +6,12 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
-const path = '/thesis-proposal'
-const title = 'Thesis & Dissertation Proposal Tool'
-const description =
-  'Write master’s and PhD thesis proposals with Ask Prof Z, OpenAlex Library search, RAG-grounded literature, structured sections, and DOCX/PDF export.'
+const page = seoPages.thesis
 
-export const metadata: Metadata = {
-  title,
-  description,
-  keywords: [
-    'thesis proposal',
-    'dissertation proposal',
-    'PhD research proposal',
-    'master thesis proposal tool',
-  ],
-  alternates: { canonical: path },
-  openGraph: {
-    title: `${title} | ${siteConfig.name}`,
-    description,
-    url: `${siteConfig.url}${path}`,
-    type: 'website',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(page)
 
 const faqs = [
   {
@@ -42,6 +24,11 @@ const faqs = [
     answer:
       'No. RflowZ accelerates drafting and organization. You and your supervisor remain responsible for academic quality, ethics, and originality.',
   },
+  {
+    question: 'What is different for master’s vs PhD proposals?',
+    answer:
+      'Master’s proposals are often shorter and more applied. PhD proposals typically demand deeper literature grounding, clearer contribution claims, and a stronger methodological justification. RflowZ supports both with the same structured workspace.',
+  },
 ]
 
 export default function ThesisProposalPage() {
@@ -49,10 +36,14 @@ export default function ThesisProposalPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: title,
-      description,
-      url: `${siteConfig.url}${path}`,
-      isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+      name: page.title,
+      description: page.description,
+      url: `${siteConfig.url}${page.path}`,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     {
       '@context': 'https://schema.org',
@@ -69,13 +60,14 @@ export default function ThesisProposalPage() {
     <SeoPageLayout
       breadcrumbs={[
         { name: 'Home', href: '/' },
-        { name: title, href: path },
+        { name: 'Resources', href: '/resources' },
+        { name: page.h1, href: page.path },
       ]}
       jsonLd={jsonLd}
     >
       <article className="mx-auto max-w-3xl">
         <h1 className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl">
-          Thesis and dissertation proposal writing with RflowZ
+          {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
           Master’s and PhD proposals need structure, credible sources, and
@@ -96,6 +88,47 @@ export default function ThesisProposalPage() {
             <li>Review Proposal assembly with citation integrity checks</li>
             <li>Export to DOCX and PDF (PPTX on higher plans)</li>
           </ul>
+
+          <h2 className="font-display text-2xl text-slate-900">
+            Master’s vs PhD proposals
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[520px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-200">
+                  <th className="px-3 py-3 font-semibold text-slate-900">Focus</th>
+                  <th className="px-3 py-3 font-semibold text-slate-900">
+                    Master’s
+                  </th>
+                  <th className="px-3 py-3 font-semibold text-slate-900">PhD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-slate-100">
+                  <th scope="row" className="px-3 py-3 font-medium text-slate-900">
+                    Scope
+                  </th>
+                  <td className="px-3 py-3">Often tighter, applied questions</td>
+                  <td className="px-3 py-3">Broader contribution claims</td>
+                </tr>
+                <tr className="border-b border-slate-100 even:bg-slate-50">
+                  <th scope="row" className="px-3 py-3 font-medium text-slate-900">
+                    Literature
+                  </th>
+                  <td className="px-3 py-3">Focused review of core streams</td>
+                  <td className="px-3 py-3">Deeper synthesis and gap framing</td>
+                </tr>
+                <tr className="border-b border-slate-100">
+                  <th scope="row" className="px-3 py-3 font-medium text-slate-900">
+                    Methods
+                  </th>
+                  <td className="px-3 py-3">Clear, feasible design</td>
+                  <td className="px-3 py-3">Stronger justification & rigor</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2 className="font-display text-2xl text-slate-900">
             Start free while you learn the workflow
           </h2>
@@ -108,19 +141,7 @@ export default function ThesisProposalPage() {
 
         <SeoFaqSection faqs={faqs} />
         <SeoCta title="Start your thesis proposal free" />
-        <SeoRelatedLinks
-          links={[
-            {
-              href: '/how-to-write-a-research-proposal',
-              label: 'How to write a research proposal',
-            },
-            {
-              href: '/ai-research-proposal-writer',
-              label: 'AI research proposal writer',
-            },
-            { href: '/rflowz-vs-chatgpt', label: 'RflowZ vs ChatGPT' },
-          ]}
-        />
+        <SeoRelatedLinks links={page.relatedLinks} />
       </article>
     </SeoPageLayout>
   )

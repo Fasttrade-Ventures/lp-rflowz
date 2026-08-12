@@ -6,30 +6,12 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
-const path = '/ai-research-proposal-writer'
-const title = 'AI Research Proposal Writer'
-const description =
-  'Write research proposals with Ask Prof Z — structured AI drafting, OpenAlex Library sources, RAG grounding, citation integrity, and DOCX, PDF, or PPTX export. Start free.'
+const page = seoPages.aiWriter
 
-export const metadata: Metadata = {
-  title,
-  description,
-  keywords: [
-    'AI research proposal writer',
-    'research proposal generator',
-    'Ask Prof Z',
-    'academic AI writing',
-  ],
-  alternates: { canonical: path },
-  openGraph: {
-    title: `${title} | ${siteConfig.name}`,
-    description,
-    url: `${siteConfig.url}${path}`,
-    type: 'website',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(page)
 
 const faqs = [
   {
@@ -47,6 +29,38 @@ const faqs = [
     answer:
       'Yes. New RflowZ accounts start on Free with 1 proposal per month, Unlimited Ask Prof Z, RAG for up to 10 documents, and 5 watermarked exports.',
   },
+  {
+    question: 'What can I export?',
+    answer:
+      'DOCX and PDF on eligible plans. PPTX is available on Standard and Professional plans. Free exports are watermarked.',
+  },
+]
+
+const outcomes = [
+  {
+    feature: 'Ask Prof Z',
+    outcome: 'Draft and refine proposal sections in academic tone',
+  },
+  {
+    feature: 'OpenAlex Library',
+    outcome: 'Find and attach real academic sources for literature work',
+  },
+  {
+    feature: 'RAG grounding',
+    outcome: 'Synthesize literature from sources you selected',
+  },
+  {
+    feature: 'Citation integrity',
+    outcome: 'Catch unresolved or mismatched cites before export',
+  },
+  {
+    feature: 'Framework + Mermaid',
+    outcome: 'Generate a proposed framework caption and diagram',
+  },
+  {
+    feature: 'DOCX / PDF / PPTX',
+    outcome: 'Export submission-ready files (plan-dependent)',
+  },
 ]
 
 export default function AiResearchProposalWriterPage() {
@@ -54,10 +68,14 @@ export default function AiResearchProposalWriterPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: title,
-      description,
-      url: `${siteConfig.url}${path}`,
-      isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+      name: page.title,
+      description: page.description,
+      url: `${siteConfig.url}${page.path}`,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     {
       '@context': 'https://schema.org',
@@ -74,19 +92,20 @@ export default function AiResearchProposalWriterPage() {
     <SeoPageLayout
       breadcrumbs={[
         { name: 'Home', href: '/' },
-        { name: title, href: path },
+        { name: 'Resources', href: '/resources' },
+        { name: page.h1, href: page.path },
       ]}
       jsonLd={jsonLd}
     >
       <article className="mx-auto max-w-3xl">
         <h1 className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl">
-          AI research proposal writer for students and researchers
+          {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
-          RflowZ is built for research proposals — not generic chat. Use Ask
-          Prof Z to draft and refine sections, search OpenAlex in your Source
-          Library, ground literature with RAG, and export when citation checks
-          pass.
+          An AI research proposal writer should do more than chat. RflowZ gives
+          you Ask Prof Z inside a structured proposal workspace — with OpenAlex
+          Library search, RAG grounding, citation integrity checks, and document
+          export.
         </p>
 
         <section className="mt-12 space-y-6 text-sm leading-7 text-slate-700">
@@ -99,40 +118,52 @@ export default function AiResearchProposalWriterPage() {
             pieces in one workspace so you spend less time on busywork and more
             time on your research argument.
           </p>
+
           <h2 className="font-display text-2xl text-slate-900">
-            How Ask Prof Z helps
+            Feature → outcome map
           </h2>
-          <ul className="list-disc space-y-2 pl-5">
-            <li>Draft problem statements, research questions, and methodology narratives</li>
-            <li>Rephrase titles and sections in academic tone</li>
-            <li>Ground literature synthesis on sources you select</li>
-            <li>Generate proposed framework captions and Mermaid diagrams</li>
-          </ul>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[480px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-200">
+                  <th className="px-3 py-3 font-semibold text-slate-900">
+                    Feature
+                  </th>
+                  <th className="px-3 py-3 font-semibold text-slate-900">
+                    Outcome
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {outcomes.map((row) => (
+                  <tr
+                    key={row.feature}
+                    className="border-b border-slate-100 even:bg-slate-50"
+                  >
+                    <td className="px-3 py-3 font-medium text-slate-900">
+                      {row.feature}
+                    </td>
+                    <td className="px-3 py-3">{row.outcome}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2 className="font-display text-2xl text-slate-900">
             From draft to export
           </h2>
-          <p>
-            When sections are ready, review your proposal, run citation
-            integrity checks, and export to DOCX or PDF. PPTX export is available
-            on Standard and Professional plans.
-          </p>
+          <ol className="list-decimal space-y-2 pl-5">
+            <li>Create a proposal project and clarify your topic.</li>
+            <li>Draft sections with Ask Prof Z.</li>
+            <li>Attach OpenAlex and Library sources; ground literature with RAG.</li>
+            <li>Review, run citation checks, export DOCX/PDF (or PPTX on higher plans).</li>
+          </ol>
         </section>
 
         <SeoFaqSection faqs={faqs} />
         <SeoCta />
-        <SeoRelatedLinks
-          links={[
-            {
-              href: '/openalex-literature-review',
-              label: 'OpenAlex literature review',
-            },
-            {
-              href: '/how-to-write-a-research-proposal',
-              label: 'How to write a research proposal',
-            },
-            { href: '/rflowz-vs-chatgpt', label: 'RflowZ vs ChatGPT' },
-          ]}
-        />
+        <SeoRelatedLinks links={page.relatedLinks} />
       </article>
     </SeoPageLayout>
   )

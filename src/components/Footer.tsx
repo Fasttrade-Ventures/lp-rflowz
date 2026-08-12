@@ -9,6 +9,7 @@ const productLinks = [
   { label: 'How it works', href: '/#how-it-works' },
   { label: 'Pricing', href: '/#pricing' },
   { label: 'FAQ', href: '/#faq' },
+  { label: 'Resources', href: '/resources' },
 ]
 
 const resourceLinks = [
@@ -29,6 +30,8 @@ const resourceLinks = [
 ]
 
 const companyLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
   { label: 'Terms & policies', href: '/terms-and-policies' },
   { label: 'Sign in', href: `${siteConfig.appUrl}/login` },
 ]
@@ -99,7 +102,21 @@ export function Footer() {
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-6 text-slate-500">
             {siteConfig.name} helps students and researchers write proposals with
             Ask Prof Z, OpenAlex Library search, RAG grounding, and export to
-            DOCX, PDF, and PPTX.
+            DOCX, PDF, and PPTX. Explore our{' '}
+            <Link
+              href="/resources"
+              className="font-medium text-slate-700 hover:text-slate-900"
+            >
+              research proposal resources
+            </Link>{' '}
+            or the{' '}
+            <Link
+              href="/ai-research-proposal-writer"
+              className="font-medium text-slate-700 hover:text-slate-900"
+            >
+              AI research proposal writer
+            </Link>
+            .
           </p>
         </div>
         <div className="mx-auto flex items-center justify-center border-t border-slate-400/10 py-10">

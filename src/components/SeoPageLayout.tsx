@@ -80,7 +80,7 @@ export function SeoPageLayout({
 
 export function SeoCta({
   title = 'Start your research proposal free',
-  description = 'Create an account, use Ask Prof Z, search OpenAlex in your Library, and export when you are ready.',
+  description = 'Create an account, use Ask Prof Z, search OpenAlex in your Library, and export when you are ready. Free plan available — no credit card required. Citation integrity checks help keep references honest before export.',
 }: {
   title?: string
   description?: string

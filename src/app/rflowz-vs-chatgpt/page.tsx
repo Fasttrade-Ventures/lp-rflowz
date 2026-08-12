@@ -6,29 +6,12 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
-const path = '/rflowz-vs-chatgpt'
-const title = 'RflowZ vs ChatGPT for Research Proposals'
-const description =
-  'Compare RflowZ and ChatGPT for research proposals: structured workflow, OpenAlex Library, RAG grounding, citation integrity, and DOCX/PDF/PPTX export.'
+const page = seoPages.vsChatgpt
 
-export const metadata: Metadata = {
-  title,
-  description,
-  keywords: [
-    'ChatGPT for research proposal',
-    'RflowZ vs ChatGPT',
-    'AI research proposal tool comparison',
-  ],
-  alternates: { canonical: path },
-  openGraph: {
-    title: `${title} | ${siteConfig.name}`,
-    description,
-    url: `${siteConfig.url}${path}`,
-    type: 'website',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(page)
 
 const rows = [
   {
@@ -74,6 +57,11 @@ const faqs = [
     answer:
       'No. RflowZ is a dedicated research proposal platform. The comparison helps people who currently use ChatGPT for proposals understand the workflow difference.',
   },
+  {
+    question: 'When is ChatGPT enough?',
+    answer:
+      'ChatGPT can help brainstorm wording. If you need a structured proposal pipeline, OpenAlex Library search, RAG grounding, citation checks, and document export, RflowZ is purpose-built for that job.',
+  },
 ]
 
 export default function RflowzVsChatgptPage() {
@@ -81,10 +69,14 @@ export default function RflowzVsChatgptPage() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      name: title,
-      description,
-      url: `${siteConfig.url}${path}`,
-      isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
+      name: page.title,
+      description: page.description,
+      url: `${siteConfig.url}${page.path}`,
+      isPartOf: {
+        '@type': 'WebSite',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     {
       '@context': 'https://schema.org',
@@ -101,13 +93,14 @@ export default function RflowzVsChatgptPage() {
     <SeoPageLayout
       breadcrumbs={[
         { name: 'Home', href: '/' },
-        { name: title, href: path },
+        { name: 'Resources', href: '/resources' },
+        { name: page.h1, href: page.path },
       ]}
       jsonLd={jsonLd}
     >
       <article className="mx-auto max-w-3xl">
         <h1 className="font-display text-4xl tracking-tight text-slate-900 sm:text-5xl">
-          RflowZ vs ChatGPT for research proposals
+          {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
           ChatGPT is a general assistant. RflowZ is a research proposal
@@ -164,23 +157,19 @@ export default function RflowzVsChatgptPage() {
             export formats reviewers expect — without rebuilding that process
             from scratch in a chat thread.
           </p>
+          <h2 className="font-display text-2xl text-slate-900">
+            When ChatGPT still helps
+          </h2>
+          <p>
+            Use ChatGPT for early brainstorming or language practice, then move
+            into RflowZ when you need Library sources, grounded synthesis, and
+            export-ready proposal structure.
+          </p>
         </section>
 
         <SeoFaqSection faqs={faqs} />
         <SeoCta title="Try the proposal workflow free" />
-        <SeoRelatedLinks
-          links={[
-            {
-              href: '/ai-research-proposal-writer',
-              label: 'AI research proposal writer',
-            },
-            {
-              href: '/openalex-literature-review',
-              label: 'OpenAlex literature review',
-            },
-            { href: '/thesis-proposal', label: 'Thesis proposal' },
-          ]}
-        />
+        <SeoRelatedLinks links={page.relatedLinks} />
       </article>
     </SeoPageLayout>
   )

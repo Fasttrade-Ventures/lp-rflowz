@@ -12,15 +12,9 @@ import { StructuredData } from '@/components/StructuredData'
 import { Testimonials } from '@/components/Testimonials'
 import { WhoItsFor } from '@/components/WhoItsFor'
 import Works from '@/components/Works'
-import { siteConfig } from '@/lib/site'
+import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 
-export const metadata: Metadata = {
-  title: siteConfig.tagline,
-  description: siteConfig.description,
-  alternates: {
-    canonical: '/',
-  },
-}
+export const metadata: Metadata = buildPageMetadata(seoPages.home)
 
 export default function Home() {
   return (

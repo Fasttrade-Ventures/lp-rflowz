@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { gsap, useGSAP } from '@/lib/gsap'
@@ -85,7 +86,21 @@ export function WhoItsFor() {
             RflowZ is an AI-powered research proposal platform for students,
             academics, and research teams. Create structured proposals with Ask
             Prof Z, search OpenAlex in your Library, ground literature with RAG,
-            and export submission-ready documents.
+            and export submission-ready documents.             Explore our{' '}
+            <Link
+              href="/resources"
+              className="font-medium text-blue-600 hover:text-blue-800"
+            >
+              research proposal resources
+            </Link>{' '}
+            or start with the{' '}
+            <Link
+              href="/ai-research-proposal-writer"
+              className="font-medium text-blue-600 hover:text-blue-800"
+            >
+              AI research proposal writer
+            </Link>
+            .
           </p>
         </div>
         <ul

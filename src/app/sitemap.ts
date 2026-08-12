@@ -1,14 +1,7 @@
 import type { MetadataRoute } from 'next'
 
+import { indexableSeoPaths } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
-
-const seoPages = [
-  '/ai-research-proposal-writer',
-  '/openalex-literature-review',
-  '/how-to-write-a-research-proposal',
-  '/thesis-proposal',
-  '/rflowz-vs-chatgpt',
-] as const
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
@@ -20,17 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
-    ...seoPages.map((path) => ({
-      url: `${siteConfig.url}${path}`,
+    ...indexableSeoPaths.map((page) => ({
+      url: `${siteConfig.url}${page.path}`,
       lastModified,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
     })),
-    {
-      url: `${siteConfig.url}/terms-and-policies`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
   ]
 }

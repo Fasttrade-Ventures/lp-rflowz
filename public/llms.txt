@@ -6,6 +6,9 @@
 
 - Website: https://rflowz.com
 - App (sign up / login): https://app.rflowz.com
+- About: https://rflowz.com/about
+- Contact: https://rflowz.com/contact
+- Resources: https://rflowz.com/resources
 - Terms and policies: https://rflowz.com/terms-and-policies
 - AI research proposal writer: https://rflowz.com/ai-research-proposal-writer
 - OpenAlex literature review: https://rflowz.com/openalex-literature-review
@@ -55,3 +58,6 @@ A: RflowZ provides a structured proposal workflow, OpenAlex Library, RAG groundi
 
 Q: What export formats are supported?
 A: DOCX and PDF on all eligible plans. PPTX export is available on Standard and Professional plans.
+
+Q: How do I contact support?
+A: Email support@rflowz.com or visit https://rflowz.com/contact

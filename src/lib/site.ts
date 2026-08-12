@@ -10,6 +10,8 @@ export const siteConfig = {
   locale: 'en_MY',
   email: 'support@rflowz.com',
   googleAnalyticsId: 'G-HPFJDV88NG',
+  /** Official profiles only — omit empty sameAs in schema when blank */
+  sameAs: [] as readonly string[],
   keywords: [
     'AI research proposal writer',
     'research proposal generator',

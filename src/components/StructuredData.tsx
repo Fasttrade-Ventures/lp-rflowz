@@ -3,7 +3,7 @@ import { planComparison } from '@/lib/plans'
 import { siteConfig } from '@/lib/site'
 
 export function StructuredData() {
-  const organization = {
+  const organization: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: siteConfig.name,
@@ -12,6 +12,16 @@ export function StructuredData() {
     logo: `${siteConfig.url}/rflowz-black.png`,
     description: siteConfig.description,
     email: siteConfig.email,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: siteConfig.email,
+      contactType: 'customer support',
+      url: `${siteConfig.url}/contact`,
+    },
+  }
+
+  if (siteConfig.sameAs.length > 0) {
+    organization.sameAs = [...siteConfig.sameAs]
   }
 
   const website = {
