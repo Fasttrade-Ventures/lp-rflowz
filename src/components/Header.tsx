@@ -11,6 +11,7 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { NavLink } from '@/components/NavLink'
 import Image from 'next/image'
 
 function MobileNavLink({
@@ -71,6 +72,16 @@ function MobileNavigation() {
         transition
         className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
       >
+        <MobileNavLink href="/#features">Features</MobileNavLink>
+        <MobileNavLink href="/#how-it-works">How it works</MobileNavLink>
+        <MobileNavLink href="/#pricing">Pricing</MobileNavLink>
+        <MobileNavLink href="/#faq">FAQ</MobileNavLink>
+        <MobileNavLink href="/ai-research-proposal-writer">
+          AI proposal writer
+        </MobileNavLink>
+        <MobileNavLink href="/openalex-literature-review">
+          OpenAlex literature
+        </MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
         <MobileNavLink href="https://app.rflowz.com/login">
           Sign in
@@ -94,8 +105,16 @@ export function Header() {
                 height={100}
               />
             </Link>
+            <div className="hidden md:flex md:gap-x-6">
+              <NavLink href="/#features">Features</NavLink>
+              <NavLink href="/#pricing">Pricing</NavLink>
+              <NavLink href="/ai-research-proposal-writer">Resources</NavLink>
+            </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
+            <div className="hidden md:block">
+              <NavLink href="https://app.rflowz.com/login">Sign in</NavLink>
+            </div>
             <Button href="https://app.rflowz.com/register" color="blue">
               <span>
                 Get started <span className="hidden lg:inline">today</span>

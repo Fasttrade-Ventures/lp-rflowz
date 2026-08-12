@@ -100,8 +100,8 @@ export function Hero() {
         ref={taglineRef}
         className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700"
       >
-        Streamline your proposal writing with smart AI tools and seamless
-        citation management from Mendeley.
+        Streamline proposal writing with Ask Prof Z, OpenAlex source Library,
+        RAG-grounded literature, and citation integrity checks.
       </p>
       <div ref={ctaRef} className="mt-10 flex justify-center gap-x-6">
         <Button href="https://app.rflowz.com/register">

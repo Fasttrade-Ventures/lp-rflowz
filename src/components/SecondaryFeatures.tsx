@@ -255,11 +255,11 @@ export function SecondaryFeatures() {
         <div className="mx-auto max-w-2xl md:text-center">
           <AnimateIn>
             <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-              Streamline your research paper writing process.
+              Streamline your research proposal writing process.
             </h2>
             <p className="mt-4 text-lg tracking-tight text-slate-700">
-              Our tools and features are designed to make writing research papers
-              easier, faster, and more efficient than ever before.
+              Ask Prof Z, OpenAlex Library search, RAG grounding, and export
+              tools help you finish stronger research proposals faster.
             </p>
           </AnimateIn>
         </div>

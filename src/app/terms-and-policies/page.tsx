@@ -220,10 +220,11 @@ export default function TermsAndPolicies() {
               </h2>
               <p className="mt-4">
                 {siteConfig.name} is committed to maintaining the integrity of academic
-                research. By integrating directly with Mendeley, we ensure that
-                all citations and references are genuine and traceable. Users
-                must not manually alter citations to misrepresent sources or
-                create fake references.
+                research. Citations are managed through your Source Library
+                (including OpenAlex academic search) with RAG grounding and
+                citation integrity checks so references stay genuine and
+                traceable. Users must not manually alter citations to
+                misrepresent sources or create fake references.
               </p>
             </section>
 

@@ -24,7 +24,7 @@ const testimonials = [
   [
     {
       content:
-        'The Mendeley integration saved hours of manual citation work. I could focus on my research questions instead of formatting.',
+        'The OpenAlex Library and RAG grounding saved hours of citation work. I could focus on research questions instead of chasing references.',
       author: {
         name: 'Sarah',
         role: 'PhD candidate',

@@ -1,12 +1,17 @@
 # RflowZ
 
-> RflowZ is an AI-powered research proposal writing platform for students, academics, and research teams. It helps users create structured research proposals with AI-assisted writing, Mendeley citation import, customizable templates, Ask Prof Z, RAG document grounding, and export to DOCX, PDF, and PPTX.
+> RflowZ is an AI-powered research proposal writing platform for students, academics, and research teams. It helps users create structured research proposals with Ask Prof Z, OpenAlex source Library search, RAG-grounded literature synthesis, citation integrity checks, proposed framework diagrams, and export to DOCX, PDF, and PPTX.
 
 ## Official URLs
 
 - Website: https://rflowz.com
 - App (sign up / login): https://app.rflowz.com
 - Terms and policies: https://rflowz.com/terms-and-policies
+- AI research proposal writer: https://rflowz.com/ai-research-proposal-writer
+- OpenAlex literature review: https://rflowz.com/openalex-literature-review
+- How to write a research proposal: https://rflowz.com/how-to-write-a-research-proposal
+- Thesis proposal: https://rflowz.com/thesis-proposal
+- RflowZ vs ChatGPT: https://rflowz.com/rflowz-vs-chatgpt
 
 ## Who it is for
 
@@ -16,11 +21,12 @@
 
 ## Core features
 
-- AI-assisted research proposal writing
-- Unlimited Ask Prof Z (plan-dependent grounding limits on Free)
+- Ask Prof Z AI-assisted research proposal writing
+- Unlimited Ask Prof Z (plan-dependent RAG grounding limits on Free)
 - RAG academic document grounding (policy / literature)
-- Mendeley citation import and reference management
-- Customizable research proposal templates
+- OpenAlex academic search and Source Library (plus policy/media sources)
+- Citation integrity verification before export
+- Proposed framework caption and Mermaid diagram
 - Export to DOCX, PDF, and PPTX (plan-dependent)
 - Free plan available on registration (no credit card required)
 - TreZ thematic review and TAM transcript analysis (coming soon on higher plans)
@@ -41,8 +47,11 @@ Paid plans include a 5-day free trial. Standard and Professional subscription ch
 Q: Is there a free plan?
 A: Yes. New accounts start on the Free plan with 1 proposal per month, Unlimited Ask Prof Z, RAG for up to 10 documents, and 5 watermarked exports per month.
 
-Q: Does RflowZ integrate with Mendeley?
-A: Yes. Users can connect Mendeley and import citations into proposals.
+Q: Does RflowZ use OpenAlex?
+A: Yes. Users search OpenAlex and other Library sources, attach them to literature work, and ground Ask Prof Z with RAG.
+
+Q: How is RflowZ different from ChatGPT?
+A: RflowZ provides a structured proposal workflow, OpenAlex Library, RAG grounding, citation integrity checks, and DOCX/PDF/PPTX export — not a general chat window alone.
 
 Q: What export formats are supported?
 A: DOCX and PDF on all eligible plans. PPTX export is available on Standard and Professional plans.

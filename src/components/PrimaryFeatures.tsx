@@ -8,25 +8,25 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { AnimateIn } from '@/components/AnimateIn'
 import backgroundImage from '@/images/background-features.jpg'
-import MendeleyIntegration from '@/images/screenshots/Mendeley-Integration.png'
+import sourceLibraryScreenshot from '@/images/screenshots/Mendeley-Integration.png'
 import screenshotPayroll from '@/images/screenshots/AI-Assisted Writing.png'
 import AutoReferenceGeneration from '@/images/screenshots/AutoReferenceGeneration.png'
 import CustomizableTemplates from '@/images/screenshots/CustomizableTemplates.png'
 
 const features = [
   {
-    title: 'AI-Assisted Writing',
+    title: 'Ask Prof Z',
     description:
-      'Speed up your writing process with AI-generated responses tailored to your research needs.',
+      'Draft and refine proposal sections with Ask Prof Z — grounded AI writing tailored to your research topic.',
     image: screenshotPayroll,
-    imageAlt: 'RflowZ AI-assisted research proposal writing interface',
+    imageAlt: 'RflowZ Ask Prof Z AI research proposal writing interface',
   },
   {
-    title: 'Mendeley Integration',
+    title: 'OpenAlex Source Library',
     description:
-      'Easily import citations directly from Mendeley, saving you valuable time.',
-    image: MendeleyIntegration,
-    imageAlt: 'RflowZ Mendeley citation import for research proposals',
+      'Search OpenAlex and policy/media sources, attach them to your proposal, and keep citations organized in one Library.',
+    image: sourceLibraryScreenshot,
+    imageAlt: 'RflowZ OpenAlex source Library for research proposal citations',
   },
   {
     title: 'Customizable Templates',
@@ -36,11 +36,11 @@ const features = [
     imageAlt: 'RflowZ customizable research proposal templates',
   },
   {
-    title: 'Auto Reference Generation',
+    title: 'Citation Integrity',
     description:
-      'Automatically generate and format your references in seconds. Say goodbye to manual citation work!',
+      'Verify references before export so unresolved or mismatched citations do not slip into your proposal.',
     image: AutoReferenceGeneration,
-    imageAlt: 'RflowZ automatic reference generation for academic proposals',
+    imageAlt: 'RflowZ citation integrity checks for academic proposals',
   },
 ]
 
@@ -82,7 +82,7 @@ export function PrimaryFeatures() {
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <AnimateIn>
             <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-              Core Features
+              AI tools for research proposal writing
             </h2>
           </AnimateIn>
         </div>

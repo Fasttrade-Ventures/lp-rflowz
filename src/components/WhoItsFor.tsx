@@ -14,7 +14,7 @@ const audiences = [
   {
     title: 'Researchers',
     description:
-      'Academic researchers who need structured proposals, literature review support, and fast citation management via Mendeley.',
+      'Academic researchers who need structured proposals, grounded literature review, and OpenAlex Library search with RAG.',
   },
   {
     title: 'Supervisors & teams',
@@ -83,8 +83,9 @@ export function WhoItsFor() {
           </h2>
           <p className="mt-4 text-lg leading-8 text-slate-600">
             RflowZ is an AI-powered research proposal platform for students,
-            academics, and research teams. Create structured proposals, import
-            Mendeley citations, and export submission-ready documents.
+            academics, and research teams. Create structured proposals with Ask
+            Prof Z, search OpenAlex in your Library, ground literature with RAG,
+            and export submission-ready documents.
           </p>
         </div>
         <ul

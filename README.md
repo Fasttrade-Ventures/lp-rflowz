@@ -1,6 +1,6 @@
 # RflowZ Landing Page
 
-Marketing website for [RflowZ](https://rflowz.com) — an AI-powered research proposal writing platform with Mendeley integration, customizable templates, and DOCX, PDF, and PPTX export.
+Marketing website for [RflowZ](https://rflowz.com) — an AI-powered research proposal writing platform with Ask Prof Z, OpenAlex source Library, RAG-grounded literature, and DOCX, PDF, and PPTX export.
 
 ## Stack
 

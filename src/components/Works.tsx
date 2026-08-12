@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import { Container } from '@/components/Container'
 import { AnimateIn } from '@/components/AnimateIn'
 import backgroundImage from '@/images/background-features.jpg'
-import MendeleyIntegration from '@/images/screenshots/Mendeley-Integration.png'
+import sourceLibraryScreenshot from '@/images/screenshots/Mendeley-Integration.png'
 import screenshotPayroll from '@/images/screenshots/AI-Assisted Writing.png'
 import CustomizableTemplates from '@/images/screenshots/CustomizableTemplates.png'
 
@@ -21,20 +21,21 @@ const features = [
   },
   {
     title: 'Step 2',
-    description: 'Generate content with our AI-powered writing assistant.',
-    image: MendeleyIntegration,
-    imageAlt: 'Step 2: Generate proposal content with RflowZ AI writing',
+    description: 'Draft sections with Ask Prof Z, grounded on your topic and sources.',
+    image: sourceLibraryScreenshot,
+    imageAlt: 'Step 2: Generate proposal content with Ask Prof Z',
   },
   {
     title: 'Step 3',
-    description: 'Import and manage citations effortlessly from Mendeley.',
+    description:
+      'Search OpenAlex, attach Library sources, and ground literature with RAG.',
     image: CustomizableTemplates,
-    imageAlt: 'Step 3: Import Mendeley citations into your RflowZ proposal',
+    imageAlt: 'Step 3: Find OpenAlex sources in the RflowZ Library',
   },
   {
     title: 'Step 4',
     description:
-      'Export a ready-to-submit proposal in DOCX, PDF, or PPTX format.',
+      'Export a ready-to-submit proposal in DOCX, PDF, or PPTX with citation checks.',
     image: CustomizableTemplates,
     imageAlt: 'Step 4: Export your finished research proposal from RflowZ',
   },
@@ -78,7 +79,7 @@ export function Works() {
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <AnimateIn>
             <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-              How It Works
+              How to write a research proposal with RflowZ
             </h2>
           </AnimateIn>
         </div>
