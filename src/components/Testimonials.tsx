@@ -1,48 +1,29 @@
 'use client'
 
 import { useRef } from 'react'
-import Image from 'next/image'
+import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { gsap, useGSAP } from '@/lib/gsap'
-import avatarImage1 from '@/images/avatars/avatar-1.png'
-import avatarImage2 from '@/images/avatars/avatar-2.png'
-import avatarImage3 from '@/images/avatars/avatar-3.png'
+import { scrollReveal } from '@/lib/reveal'
+import { siteConfig } from '@/lib/site'
 
-const testimonials = [
-  [
-    {
-      content:
-        'RflowZ helped me cut my research proposal writing time in half, and the AI suggestions were incredibly insightful.',
-      author: {
-        name: 'Aiman',
-        role: 'Graduate researcher',
-        image: avatarImage1,
-      },
-    },
-  ],
-  [
-    {
-      content:
-        'The OpenAlex Library and RAG grounding saved hours of citation work. I could focus on research questions instead of chasing references.',
-      author: {
-        name: 'Sarah',
-        role: 'PhD candidate',
-        image: avatarImage2,
-      },
-    },
-  ],
-  [
-    {
-      content:
-        'Our students use RflowZ to draft stronger proposals faster. The templates and export options are exactly what we needed.',
-      author: {
-        name: 'Dr. Lee',
-        role: 'Academic supervisor',
-        image: avatarImage3,
-      },
-    },
-  ],
+const researcherNeeds = [
+  {
+    content:
+      'Cut the time from topic to a structured draft — without starting from a blank page or a generic chatbot.',
+    audience: 'Graduate researchers',
+  },
+  {
+    content:
+      'Keep literature, citations, and RAG-grounded writing in one Library so references stay tied to sources you chose.',
+    audience: 'PhD candidates',
+  },
+  {
+    content:
+      'Give students a section-by-section workflow through to DOCX, PDF, or PPTX — with citation checks before export.',
+    audience: 'Supervisors',
+  },
 ]
 
 function QuoteIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -63,34 +44,15 @@ export function Testimonials() {
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from(headingRef.current, {
-          opacity: 0,
-          y: 40,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
-
-        if (cardsRef.current) {
-          gsap.from(Array.from(cardsRef.current.children), {
-            opacity: 0,
-            y: 30,
-            duration: 0.6,
-            ease: 'power3.out',
-            stagger: 0.15,
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          })
-        }
+        const cleanups = [
+          scrollReveal(headingRef.current, headingRef.current),
+          cardsRef.current
+            ? scrollReveal(Array.from(cardsRef.current.children), cardsRef.current, {
+                stagger: 0.1,
+              })
+            : undefined,
+        ]
+        return () => cleanups.forEach((fn) => fn?.())
       })
     },
     { scope: sectionRef },
@@ -100,55 +62,56 @@ export function Testimonials() {
     <section
       ref={sectionRef}
       id="testimonials"
-      aria-label="What RflowZ customers are saying"
+      aria-label="What researchers need from a proposal workspace"
       className="bg-slate-50 py-20 sm:py-32"
     >
       <Container>
         <div ref={headingRef} className="mx-auto max-w-2xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
-            Trusted by researchers
+            What researchers need
           </h2>
+          <p className="mt-4 text-lg tracking-tight text-slate-700">
+            Outcomes the product is built for — not customer testimonials.
+          </p>
+          <p className="mt-4 text-sm text-slate-600">
+            Built with{' '}
+            <Link
+              href="/about"
+              className="font-semibold text-blue-600 hover:text-blue-800"
+            >
+              {siteConfig.founder.name}, {siteConfig.founder.credentials}
+            </Link>
+            {' · '}
+            <a
+              href={siteConfig.sameAs[1]}
+              className="text-blue-600 hover:text-blue-800"
+              target="_blank"
+              rel="noreferrer"
+            >
+              LinkedIn
+            </a>
+          </p>
         </div>
         <ul
           ref={cardsRef}
           role="list"
           className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3"
         >
-          {testimonials.map((column, columnIndex) => (
-            <li key={columnIndex}>
-              <ul role="list" className="flex flex-col gap-y-6 sm:gap-y-8">
-                {column.map((testimonial) => (
-                  <li key={testimonial.author.name}>
-                    <figure className="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
-                      <QuoteIcon className="absolute left-6 top-6 fill-slate-100" />
-                      <blockquote className="relative">
-                        <p className="text-lg tracking-tight text-slate-900">
-                          {testimonial.content}
-                        </p>
-                      </blockquote>
-                      <figcaption className="relative mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
-                        <div>
-                          <div className="font-display text-base text-slate-900">
-                            {testimonial.author.name}
-                          </div>
-                          <div className="mt-1 text-sm text-slate-500">
-                            {testimonial.author.role}
-                          </div>
-                        </div>
-                        <div className="overflow-hidden rounded-full bg-slate-50">
-                          <Image
-                            className="h-14 w-14 object-cover"
-                            src={testimonial.author.image}
-                            alt={`${testimonial.author.name}, ${testimonial.author.role}`}
-                            width={56}
-                            height={56}
-                          />
-                        </div>
-                      </figcaption>
-                    </figure>
-                  </li>
-                ))}
-              </ul>
+          {researcherNeeds.map((item) => (
+            <li key={item.audience}>
+              <figure className="relative h-full rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
+                <QuoteIcon className="absolute left-6 top-6 fill-slate-100" />
+                <blockquote className="relative">
+                  <p className="text-lg tracking-tight text-slate-900">
+                    {item.content}
+                  </p>
+                </blockquote>
+                <figcaption className="relative mt-6 border-t border-slate-100 pt-6">
+                  <div className="font-display text-base text-slate-900">
+                    {item.audience}
+                  </div>
+                </figcaption>
+              </figure>
             </li>
           ))}
         </ul>

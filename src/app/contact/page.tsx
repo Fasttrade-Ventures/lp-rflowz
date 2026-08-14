@@ -5,6 +5,7 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { cta } from '@/lib/cta'
 import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
@@ -41,8 +42,9 @@ export default function ContactPage() {
           {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
-          Questions about plans, billing, or using Ask Prof Z and the Source
-          Library? Reach our support team — we typically respond by email.
+          Questions about RflowZ plans, billing, Ask Prof Z, or the Source
+          Library? Email support — RflowZ does not publish a walk-in office on
+          this site.
         </p>
 
         <section className="mt-12 space-y-6 text-sm leading-7 text-slate-700">
@@ -51,6 +53,7 @@ export default function ContactPage() {
             <a
               href={`mailto:${siteConfig.email}`}
               className="text-lg font-medium text-blue-600 hover:text-blue-800"
+              data-cta="contact"
             >
               {siteConfig.email}
             </a>
@@ -63,10 +66,21 @@ export default function ContactPage() {
             Create or sign in to your proposal workspace on the RflowZ app.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button href={`${siteConfig.appUrl}/register`} color="blue">
-              Get started for free
+            <Button
+              href={cta.registerHref}
+              color="blue"
+              data-cta="contact"
+              data-cta-action="register"
+            >
+              {cta.primaryLabel}
             </Button>
-            <Button href={`${siteConfig.appUrl}/login`} variant="outline" color="slate">
+            <Button
+              href={cta.loginHref}
+              variant="outline"
+              color="slate"
+              data-cta="contact"
+              data-cta-action="login"
+            >
               Sign in
             </Button>
           </div>

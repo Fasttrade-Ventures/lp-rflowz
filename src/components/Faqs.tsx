@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Container } from '@/components/Container'
 import { gsap, useGSAP } from '@/lib/gsap'
 import { faqColumns } from '@/lib/faqs'
+import { scrollReveal } from '@/lib/reveal'
 import backgroundImage from '@/images/background-faqs.jpg'
 
 export function Faqs() {
@@ -18,34 +19,17 @@ export function Faqs() {
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from(headingRef.current, {
-          opacity: 0,
-          y: 40,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
-
-        if (columnsRef.current) {
-          gsap.from(Array.from(columnsRef.current.children), {
-            opacity: 0,
-            x: -20,
-            duration: 0.6,
-            ease: 'power3.out',
-            stagger: 0.12,
-            scrollTrigger: {
-              trigger: columnsRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          })
-        }
+        const cleanups = [
+          scrollReveal(headingRef.current, headingRef.current),
+          columnsRef.current
+            ? scrollReveal(
+                Array.from(columnsRef.current.children),
+                columnsRef.current,
+                { stagger: 0.1 },
+              )
+            : undefined,
+        ]
+        return () => cleanups.forEach((fn) => fn?.())
       })
     },
     { scope: sectionRef },

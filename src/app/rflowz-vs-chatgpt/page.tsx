@@ -108,7 +108,12 @@ export default function RflowzVsChatgptPage() {
           citation integrity checks, and document export.
         </p>
 
-        <div className="mt-12 overflow-x-auto">
+        <div
+          className="mt-12 overflow-x-auto rounded-lg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+          tabIndex={0}
+          role="region"
+          aria-label="RflowZ versus ChatGPT comparison"
+        >
           <table className="w-full min-w-[560px] border-collapse text-left text-sm text-slate-700">
             <caption className="sr-only">
               Feature comparison between RflowZ and ChatGPT for research

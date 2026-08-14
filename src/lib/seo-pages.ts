@@ -19,7 +19,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     title: siteConfig.tagline,
     description: siteConfig.description,
     primaryKeyword: 'AI research proposal writer',
-    h1: 'Build Research Proposals Effortlessly with RflowZ',
+    h1: 'Write a grounded research proposal with Ask Prof Z',
     relatedLinks: [
       {
         href: '/ai-research-proposal-writer',
@@ -48,7 +48,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         label: 'How to write a research proposal',
       },
       { href: '/rflowz-vs-chatgpt', label: 'RflowZ vs ChatGPT' },
-      { href: '/resources', label: 'All resources' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
   },
   openAlex: {
@@ -68,7 +69,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         label: 'How to write a research proposal',
       },
       { href: '/thesis-proposal', label: 'Thesis proposal' },
-      { href: '/resources', label: 'All resources' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
   },
   howTo: {
@@ -88,7 +90,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         href: '/openalex-literature-review',
         label: 'OpenAlex literature review',
       },
-      { href: '/resources', label: 'All resources' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
   },
   thesis: {
@@ -108,7 +111,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         label: 'AI research proposal writer',
       },
       { href: '/rflowz-vs-chatgpt', label: 'RflowZ vs ChatGPT' },
-      { href: '/resources', label: 'All resources' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
   },
   vsChatgpt: {
@@ -128,7 +132,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         label: 'OpenAlex literature review',
       },
       { href: '/thesis-proposal', label: 'Thesis proposal' },
-      { href: '/resources', label: 'All resources' },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
   },
   about: {
@@ -179,6 +184,8 @@ export const seoPages: Record<string, SeoPageConfig> = {
         href: '/openalex-literature-review',
         label: 'OpenAlex literature review',
       },
+      { href: '/#pricing', label: 'Pricing' },
+      { href: '/about', label: 'About RflowZ' },
     ],
     priority: 0.85,
   },

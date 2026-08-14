@@ -1,5 +1,6 @@
 import { faqs } from '@/lib/faqs'
-import { planComparison } from '@/lib/plans'
+import { jsonLdScript } from '@/lib/jsonLd'
+import { pricingPlans } from '@/lib/plans'
 import { siteConfig } from '@/lib/site'
 
 export function StructuredData() {
@@ -25,6 +26,7 @@ export function StructuredData() {
     organization.founder = {
       '@type': 'Person',
       name: siteConfig.founder.name,
+      jobTitle: 'Founder',
       sameAs: [...siteConfig.sameAs],
     }
   }
@@ -47,15 +49,26 @@ export function StructuredData() {
     name: siteConfig.name,
     applicationCategory: 'EducationalApplication',
     operatingSystem: 'Web',
-    url: siteConfig.appUrl,
+            url: siteConfig.appUrl,
+            provider: {
+              '@type': 'Organization',
+              name: siteConfig.name,
+              legalName: siteConfig.legalName,
+              url: siteConfig.url,
+            },
     description: siteConfig.description,
-    offers: planComparison.map((plan) => ({
+    offers: pricingPlans.map((plan) => ({
       '@type': 'Offer',
       name: `${plan.name} Plan`,
-      price: plan.monthly.replace('$', ''),
+      price: plan.isFree ? '0' : plan.price.replace('$', ''),
       priceCurrency: 'USD',
-      description: `${plan.proposals} proposals, ${plan.exports} exports, watermark: ${plan.watermark}, PPTX: ${plan.pptx}`,
-      url: `${siteConfig.appUrl}/register`,
+      description: plan.description,
+      availability: plan.comingSoonNote
+        ? 'https://schema.org/PreOrder'
+        : 'https://schema.org/InStock',
+      url: plan.comingSoonNote
+        ? `${siteConfig.url}/#pricing`
+        : (plan.href ?? `${siteConfig.appUrl}/register`),
     })),
     featureList: [
       'Ask Prof Z AI research proposal writing',
@@ -86,7 +99,7 @@ export function StructuredData() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
     />
   )
 }

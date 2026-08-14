@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
   Popover,
@@ -11,18 +12,26 @@ import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
+import { Magnetic } from '@/components/motion/Magnetic'
 import { NavLink } from '@/components/NavLink'
+import { cta } from '@/lib/cta'
 import Image from 'next/image'
 
 function MobileNavLink({
   href,
   children,
+  ...rest
 }: {
   href: string
   children: React.ReactNode
-}) {
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
-    <PopoverButton as={Link} href={href} className="block w-full p-2">
+    <PopoverButton
+      as={Link}
+      href={href}
+      className="block min-h-11 w-full px-3 py-3 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      {...rest}
+    >
       {children}
     </PopoverButton>
   )
@@ -59,10 +68,14 @@ function MobileNavigation() {
   return (
     <Popover>
       <PopoverButton
-        className="relative z-10 flex h-8 w-8 items-center justify-center ui-not-focus-visible:outline-none"
-        aria-label="Toggle Navigation"
+        className="relative z-10 flex h-11 w-11 items-center justify-center focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
       >
-        {({ open }) => <MobileNavIcon open={open} />}
+        {({ open }) => (
+          <>
+            <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
+            <MobileNavIcon open={open} />
+          </>
+        )}
       </PopoverButton>
       <PopoverBackdrop
         transition
@@ -70,17 +83,19 @@ function MobileNavigation() {
       />
       <PopoverPanel
         transition
-        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
+        className="absolute inset-x-0 top-full z-50 mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:duration-150 data-[leave]:duration-100 data-[enter]:ease-out data-[leave]:ease-in"
       >
-        <MobileNavLink href="/#features">Features</MobileNavLink>
+        <MobileNavLink href="/#secondary-features">Features</MobileNavLink>
         <MobileNavLink href="/#how-it-works">How it works</MobileNavLink>
-        <MobileNavLink href="/#pricing">Pricing</MobileNavLink>
+        <MobileNavLink href="/#pricing" data-cta="header" data-cta-action="pricing">
+          Pricing
+        </MobileNavLink>
         <MobileNavLink href="/#faq">FAQ</MobileNavLink>
         <MobileNavLink href="/resources">Resources</MobileNavLink>
         <MobileNavLink href="/about">About</MobileNavLink>
         <MobileNavLink href="/contact">Contact</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
-        <MobileNavLink href="https://app.rflowz.com/login">
+        <MobileNavLink href={cta.loginHref} data-cta="header" data-cta-action="login">
           Sign in
         </MobileNavLink>
       </PopoverPanel>
@@ -88,36 +103,84 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+export function Header({ cinematic = false }: { cinematic?: boolean }) {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    if (!cinematic) {
+      return
+    }
+
+    function onScroll() {
+      setScrolled(window.scrollY > 16)
+    }
+
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [cinematic])
+
+  const registerButton = (
+    <Button
+      href={cta.registerHref}
+      color="blue"
+      data-cta="header"
+      data-cta-action="register"
+      aria-label={cta.primaryLabel}
+    >
+      {cta.primaryShort}
+    </Button>
+  )
+
   return (
-    <header className="py-10">
+    <header
+      className={clsx(
+        cinematic
+          ? 'sticky top-0 z-40 py-4 transition-[padding,background-color,box-shadow] duration-300 sm:py-5'
+          : 'py-6 sm:py-8 lg:py-10',
+        cinematic && scrolled
+          ? 'border-b border-slate-200/80 bg-white/85 shadow-sm backdrop-blur-md'
+          : cinematic
+            ? 'bg-transparent'
+            : null,
+      )}
+    >
       <Container>
-        <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
-            <Link href="/" aria-label="RflowZ home">
+        <nav
+          className="relative z-50 flex items-center justify-between gap-3"
+          aria-label="Primary"
+        >
+          <div className="flex min-w-0 items-center lg:gap-x-12">
+            <Link href="/" aria-label="RflowZ home" className="shrink-0">
               <Image
                 src="/rflowz-black.png"
-                alt="RflowZ logo"
+                alt=""
                 width={100}
                 height={100}
+                className="h-8 w-auto sm:h-10"
               />
             </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="/#features">Features</NavLink>
-              <NavLink href="/#pricing">Pricing</NavLink>
+            <div className="hidden lg:flex lg:gap-x-6">
+              <NavLink href="/#secondary-features">Features</NavLink>
+              <NavLink href="/#how-it-works">How it works</NavLink>
+              <NavLink href="/#pricing" data-cta="header" data-cta-action="pricing">
+                Pricing
+              </NavLink>
               <NavLink href="/resources">Resources</NavLink>
             </div>
           </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href="https://app.rflowz.com/login">Sign in</NavLink>
+          <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-5 lg:gap-x-8">
+            <div className="hidden lg:block">
+              <NavLink href={cta.loginHref} data-cta="header" data-cta-action="login">
+                Sign in
+              </NavLink>
             </div>
-            <Button href="https://app.rflowz.com/register" color="blue">
-              <span>
-                Get started <span className="hidden lg:inline">today</span>
-              </span>
-            </Button>
-            <div className="-mr-1 md:hidden">
+            {cinematic ? (
+              <Magnetic>{registerButton}</Magnetic>
+            ) : (
+              registerButton
+            )}
+            <div className="-mr-1 lg:hidden">
               <MobileNavigation />
             </div>
           </div>

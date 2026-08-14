@@ -3,6 +3,7 @@ import { type Metadata } from 'next'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { StickyMobileCta } from '@/components/StickyMobileCta'
 import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
@@ -12,9 +13,13 @@ export default function TermsAndPolicies() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="mx-auto max-w-7xl px-4 pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:px-6 lg:px-8 lg:pb-0 outline-none"
+      >
         <div className="py-16 sm:py-24">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <h1 className="font-display text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight text-gray-900">
             {siteConfig.name} Terms and Policies
           </h1>
           <div className="mt-10 space-y-8 text-base leading-7 text-gray-600">
@@ -73,9 +78,18 @@ export default function TermsAndPolicies() {
               </p>
               <ul className="mt-4 list-disc pl-5">
                 <li>Free Plan: $0/month (auto-assigned on registration)</li>
-                <li>Starter Plan: $3.99/month (billed annually)</li>
-                <li>Standard Plan: $4.99/month (billed annually)</li>
-                <li>Professional Plan: $7.99/month (billed annually)</li>
+                <li>
+                  Starter Plan: $3.99/month (live paid plan; billing interval
+                  selected in the app)
+                </li>
+                <li>
+                  Standard Plan: $4.99/month (listed; subscription checkout
+                  coming soon)
+                </li>
+                <li>
+                  Professional Plan: $7.99/month (listed; subscription checkout
+                  coming soon)
+                </li>
               </ul>
               <p className="mt-4">Features of each plan:</p>
               <h3 className="mt-4 text-xl font-semibold">Free Plan</h3>
@@ -144,10 +158,13 @@ export default function TermsAndPolicies() {
               </ul>
               <p className="mt-4">
                 All payments are non-refundable except as required by law. Paid
-                plans include a 5-day free trial. Users can choose between
-                monthly and annual billing cycles, with annual billing offering
-                a discount. Standard and Professional subscription options may
-                show as coming soon while checkout is finalized.
+                plans include a 5-day free trial. Users can choose monthly or
+                annual billing in the app when they subscribe. The monthly USD
+                rates listed above match the Yearly billing view of in-app
+                plans at {siteConfig.appUrl}/subscription as of August 2026.
+                This site does not promise a cheaper annual package. Standard
+                and Professional subscription options may show as coming soon
+                while checkout is finalized.
               </p>
             </section>
 
@@ -300,6 +317,7 @@ export default function TermsAndPolicies() {
         </div>
       </main>
       <Footer />
+      <StickyMobileCta />
     </>
   )
 }

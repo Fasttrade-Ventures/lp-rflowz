@@ -3,8 +3,16 @@ import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
 import { GoogleAnalytics } from '@/components/GoogleAnalytics'
+import { HashScroll } from '@/components/HashScroll'
+import { SkipLink } from '@/components/SkipLink'
 import { siteConfig } from '@/lib/site'
 import '@/styles/tailwind.css'
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover' as const,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -70,14 +78,16 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang={siteConfig.locale.replace('_', '-')}
       className={clsx(
-        'h-full scroll-smooth bg-white antialiased',
+        'h-full scroll-pt-24 scroll-pb-32 bg-white antialiased',
         inter.variable,
         lexend.variable,
       )}
     >
       <body className="flex h-full flex-col">
+        <SkipLink />
+        <HashScroll />
         <GoogleAnalytics />
         {children}
       </body>

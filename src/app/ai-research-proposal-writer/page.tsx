@@ -122,7 +122,12 @@ export default function AiResearchProposalWriterPage() {
           <h2 className="font-display text-2xl text-slate-900">
             Feature → outcome map
           </h2>
-          <div className="overflow-x-auto">
+          <div
+            className="overflow-x-auto rounded-lg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            tabIndex={0}
+            role="region"
+            aria-label="Feature to outcome map"
+          >
             <table className="w-full min-w-[480px] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-200">

@@ -1,5 +1,13 @@
 import { siteConfig } from '@/lib/site'
 
+/**
+ * Marketing prices (USD monthly rate).
+ * Verified 14 Aug 2026 against signed-in https://app.rflowz.com/subscription
+ * with the Yearly billing toggle: Free; Starter $3.99/mo billed annually;
+ * Standard $4.99/mo billed annually (Coming soon); Professional $7.99/mo
+ * billed annually (Coming soon). Monthly-toggle totals were not captured.
+ * Do not invent a cheaper annual package price. Wrong URL: /pricing 500s.
+ */
 export type PlanRow = {
   name: string
   monthly: string
@@ -14,13 +22,14 @@ export type PlanCard = {
   name: string
   price: string
   description: string
-  href: string
+  href?: string
   features: string[]
   notIncluded: string[]
   featured?: boolean
   isFree?: boolean
   footerNote?: string
   comingSoonNote?: string
+  ctaLabel?: string
 }
 
 export const planComparison: PlanRow[] = [
@@ -70,6 +79,7 @@ export const pricingPlans: PlanCard[] = [
     description:
       'Get started with limited proposal generation and watermarked exports.',
     href: `${siteConfig.appUrl}/register`,
+    ctaLabel: 'Start free — no credit card',
     features: [
       '1 proposal per month',
       'Unlimited Ask Prof Z included',
@@ -93,6 +103,8 @@ export const pricingPlans: PlanCard[] = [
     description:
       'Perfect for beginners and occasional users looking to get started with research proposal formulation.',
     href: `${siteConfig.appUrl}/register`,
+    ctaLabel: 'Get started',
+    footerNote: 'Live paid plan · 5-day trial, then Starter',
     features: [
       'Unlimited Ask Prof Z included',
       'Unlimited RAG — academic document grounding (policy / literature)',
@@ -115,7 +127,6 @@ export const pricingPlans: PlanCard[] = [
     price: '$4.99',
     description:
       'Ideal for academic professionals and regular researchers needing enhanced tools and support.',
-    href: `${siteConfig.appUrl}/register`,
     features: [
       'Unlimited Ask Prof Z included',
       'Unlimited RAG — academic document grounding (policy / literature)',
@@ -139,7 +150,6 @@ export const pricingPlans: PlanCard[] = [
     price: '$7.99',
     description:
       'Best for large-scale research projects and experienced researchers.',
-    href: `${siteConfig.appUrl}/register`,
     features: [
       'Unlimited Ask Prof Z included',
       'Unlimited RAG — academic document grounding (policy / literature)',

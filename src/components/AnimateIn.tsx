@@ -1,7 +1,9 @@
 'use client'
 
 import { useRef } from 'react'
+
 import { gsap, useGSAP, ScrollTrigger } from '@/lib/gsap'
+import { scrollReveal } from '@/lib/reveal'
 
 type Direction = 'up' | 'left' | 'right'
 
@@ -12,12 +14,6 @@ interface AnimateInProps {
   className?: string
   stagger?: number
   as?: keyof JSX.IntrinsicElements
-}
-
-const directionOffset: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 40 },
-  left: { x: -30, y: 0 },
-  right: { x: 30, y: 0 },
 }
 
 export function AnimateIn({
@@ -35,28 +31,13 @@ export function AnimateIn({
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        const offset = directionOffset[direction]
         const target = stagger
           ? containerRef.current?.children
           : containerRef.current
 
-        if (!target) return
+        if (!target || !containerRef.current) return
 
-        gsap.from(target, {
-          opacity: 0,
-          x: offset.x,
-          y: offset.y,
-          duration: 0.7,
-          delay,
-          ease: 'power3.out',
-          stagger,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
+        return scrollReveal(target, containerRef.current, { delay, stagger })
       })
     },
     { scope: containerRef, dependencies: [direction, delay, stagger] },

@@ -5,22 +5,23 @@ import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { gsap, useGSAP } from '@/lib/gsap'
+import { scrollReveal } from '@/lib/reveal'
 
 const audiences = [
   {
-    title: 'Students',
+    title: 'Students using RflowZ',
     description:
-      'Undergraduate and postgraduate students writing thesis, dissertation, or grant proposals with guided templates and AI support.',
+      'RflowZ is for undergraduate and postgraduate students writing thesis, dissertation, or grant proposals with Ask Prof Z, Library sources, and structured sections.',
   },
   {
-    title: 'Researchers',
+    title: 'Researchers using RflowZ',
     description:
-      'Academic researchers who need structured proposals, grounded literature review, and OpenAlex Library search with RAG.',
+      'RflowZ is for academic researchers who need a structured proposal workspace, OpenAlex Library search, RAG-grounded literature, and citation checks before export.',
   },
   {
-    title: 'Supervisors & teams',
+    title: 'Supervisors and teams using RflowZ',
     description:
-      'Supervisors and research groups preparing consistent, well-formatted proposals ready for DOCX, PDF, or PPTX export.',
+      'RflowZ is for supervisors and research groups preparing consistent proposals for DOCX or PDF export (PPTX on higher plans when those plans launch).',
   },
 ]
 
@@ -34,34 +35,15 @@ export function WhoItsFor() {
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from(headingRef.current, {
-          opacity: 0,
-          y: 40,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
-
-        if (cardsRef.current) {
-          gsap.from(Array.from(cardsRef.current.children), {
-            opacity: 0,
-            y: 40,
-            duration: 0.6,
-            ease: 'power3.out',
-            stagger: 0.12,
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          })
-        }
+        const cleanups = [
+          scrollReveal(headingRef.current, headingRef.current),
+          cardsRef.current
+            ? scrollReveal(Array.from(cardsRef.current.children), cardsRef.current, {
+                stagger: 0.1,
+              })
+            : undefined,
+        ]
+        return () => cleanups.forEach((fn) => fn?.())
       })
     },
     { scope: sectionRef },
@@ -106,12 +88,12 @@ export function WhoItsFor() {
         <ul
           ref={cardsRef}
           role="list"
-          className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3"
+          className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           {audiences.map((audience) => (
             <li
               key={audience.title}
-              className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200"
+              className="rounded-2xl bg-slate-50 p-6 ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:ring-blue-200"
             >
               <h3 className="font-display text-lg text-slate-900">
                 {audience.title}

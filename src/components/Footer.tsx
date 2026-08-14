@@ -2,14 +2,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { Container } from '@/components/Container'
+import { cta } from '@/lib/cta'
 import { siteConfig } from '@/lib/site'
 
 const productLinks = [
-  { label: 'Features', href: '/#features' },
+  { label: 'Features', href: '/#secondary-features' },
   { label: 'How it works', href: '/#how-it-works' },
   { label: 'Pricing', href: '/#pricing' },
   { label: 'FAQ', href: '/#faq' },
   { label: 'Resources', href: '/resources' },
+  { label: cta.primaryShort, href: cta.registerHref },
 ]
 
 const resourceLinks = [
@@ -40,21 +42,28 @@ const companyLinks = [
   })),
 ]
 
-export function Footer() {
+export function Footer({ finale = false }: { finale?: boolean }) {
   return (
     <footer className="bg-slate-50">
       <Container>
-        <div className="py-16">
-          <Link href="/" aria-label={`${siteConfig.name} home`}>
-            <Image
-              className="mx-auto h-10 w-auto"
-              src="/rflowz-black.png"
-              alt={`${siteConfig.name} logo`}
-              width={100}
-              height={100}
-            />
-          </Link>
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <div className={finale ? 'py-16 sm:py-20' : 'py-16'}>
+          {finale ? (
+            <p className="mx-auto max-w-2xl text-center font-display text-2xl font-medium leading-tight tracking-tight text-slate-900 sm:text-3xl">
+              Write the next proposal
+              <span className="mt-1 block text-blue-800">with RflowZ.</span>
+            </p>
+          ) : (
+            <Link href="/" aria-label={`${siteConfig.name} home`}>
+              <Image
+                className="mx-auto h-10 w-auto"
+                src="/rflowz-black.png"
+                alt=""
+                width={100}
+                height={100}
+              />
+            </Link>
+          )}
+          <div className={finale ? 'mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3' : 'mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3'}>
             <nav aria-label="Product">
               <h2 className="text-sm font-semibold text-slate-900">Product</h2>
               <ul className="mt-4 space-y-3">
@@ -62,7 +71,13 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-600 hover:text-slate-900"
+                      className="inline-flex min-h-11 items-center text-sm text-slate-600 hover:text-slate-900 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                      data-cta={
+                        link.href.includes('/register') ? 'footer' : undefined
+                      }
+                      data-cta-action={
+                        link.href.includes('/register') ? 'register' : undefined
+                      }
                     >
                       {link.label}
                     </Link>
@@ -79,7 +94,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-slate-600 hover:text-slate-900"
+                      className="inline-flex min-h-11 items-center text-sm text-slate-600 hover:text-slate-900 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
                       {link.label}
                     </Link>
@@ -97,16 +112,23 @@ export function Footer() {
                       {isExternal ? (
                         <a
                           href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-slate-600 hover:text-slate-900"
+                          {...(link.href.includes('/login')
+                            ? {
+                                'data-cta': 'footer',
+                                'data-cta-action': 'login',
+                              }
+                            : {
+                                target: '_blank',
+                                rel: 'noopener noreferrer',
+                              })}
+                          className="inline-flex min-h-11 items-center text-sm text-slate-600 hover:text-slate-900 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         >
                           {link.label}
                         </a>
                       ) : (
                         <Link
                           href={link.href}
-                          className="text-sm text-slate-600 hover:text-slate-900"
+                          className="inline-flex min-h-11 items-center text-sm text-slate-600 hover:text-slate-900 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         >
                           {link.label}
                         </Link>

@@ -1,6 +1,6 @@
 # RflowZ
 
-> RflowZ is an AI-powered research proposal writing platform for students, academics, and research teams. It helps users create structured research proposals with Ask Prof Z, OpenAlex source Library search, RAG-grounded literature synthesis, citation integrity checks, proposed framework diagrams, and export to DOCX, PDF, and PPTX.
+> As of August 2026. RflowZ (legal name RFlowZ-SS) is an AI-powered research proposal SaaS for students, academics, and research teams. Users draft structured proposals with Ask Prof Z, search OpenAlex and policy/media sources in the Source Library, ground literature with retrieval-augmented generation (RAG), run citation integrity checks, and export to DOCX or PDF (PPTX on higher plans when those plans launch).
 
 ## Official URLs
 
@@ -17,6 +17,17 @@
 - How to write a research proposal: https://rflowz.com/how-to-write-a-research-proposal
 - Thesis proposal: https://rflowz.com/thesis-proposal
 - RflowZ vs ChatGPT: https://rflowz.com/rflowz-vs-chatgpt
+
+## Entity graph
+
+- Organization: RflowZ (operating name) / RFlowZ-SS (legal name)
+- Product: RflowZ web app at https://app.rflowz.com
+- Feature: Ask Prof Z (in-app AI assistant for proposal sections)
+- Feature: Source Library (OpenAlex academic search + policy/media sources)
+- Technique: RAG — Ask Prof Z is grounded on sources the user attaches
+- Person: Mohd Zairul (PhD, P.Tech), founder
+- Support: support@rflowz.com (email; no public street address on this site)
+- Locale: en-MY; web SaaS, not a walk-in office
 
 ## Who it is for
 
@@ -36,30 +47,46 @@
 - Free plan available on registration (no credit card required)
 - TreZ thematic review and TAM transcript analysis (coming soon on higher plans)
 
-## Pricing plans (annual display)
+## Pricing plans (USD monthly rate, as of August 2026)
 
-| Plan | Price | Proposals/mo | Exports/mo | Watermark | PPTX |
-|------|-------|--------------|------------|-----------|------|
-| Free | $0 | 1 | 5 | Yes | No |
-| Starter | $3.99/mo | 10 | 30 | No | No |
-| Standard | $4.99/mo | 30 | Included | No | Yes |
-| Professional | $7.99/mo | Unlimited | Unlimited | No | Yes |
+Verified against the signed-in Yearly view of https://app.rflowz.com/subscription (14 Aug 2026). Unauthenticated requests still redirect to login. Do not invent a cheaper annual package. Do not use `/pricing` as the plan URL.
 
-Paid plans include a 5-day free trial. Standard and Professional subscription checkout may show as coming soon while rollout continues. Get started still available via app registration.
+| Plan | Price | Proposals/mo | Exports/mo | Watermark | PPTX | Availability |
+|------|-------|--------------|------------|-----------|------|----------------|
+| Free | $0 | 1 | 5 | Yes | No | Live on registration |
+| Starter | $3.99/mo | 10 | 30 | No | No | Live paid path (5-day trial) |
+| Standard | $4.99/mo | 30 | Included | No | Yes | Coming soon |
+| Professional | $7.99/mo | Unlimited | Unlimited | No | Yes | Coming soon |
+
+Choose monthly or annual billing in the app. Get started via app registration.
+
+## Limitations (do not omit)
+
+- RflowZ does not replace a supervisor or certify examination quality
+- Citation checks flag mismatches; they do not prove originality
+- TreZ and TAM are coming soon, not live
+- Mendeley is not a current integration
+- PPTX is listed only on Standard and Professional (not sellable yet)
 
 ## Frequently asked questions
 
+Q: What is RflowZ?
+A: RflowZ is a research-proposal SaaS with Ask Prof Z, OpenAlex Library search, RAG grounding, citation checks, and document export.
+
 Q: Is there a free plan?
-A: Yes. New accounts start on the Free plan with 1 proposal per month, Unlimited Ask Prof Z, RAG for up to 10 documents, and 5 watermarked exports per month.
+A: Yes. New accounts start on Free: 1 proposal per month, Unlimited Ask Prof Z, RAG for up to 10 documents, and 5 watermarked exports per month.
 
 Q: Does RflowZ use OpenAlex?
 A: Yes. Users search OpenAlex and other Library sources, attach them to literature work, and ground Ask Prof Z with RAG.
 
 Q: How is RflowZ different from ChatGPT?
-A: RflowZ provides a structured proposal workflow, OpenAlex Library, RAG grounding, citation integrity checks, and DOCX/PDF/PPTX export — not a general chat window alone.
+A: RflowZ is a structured proposal workspace with Library, RAG, citation checks, and export — not a general chat window alone.
 
 Q: What export formats are supported?
-A: DOCX and PDF on all eligible plans. PPTX export is available on Standard and Professional plans.
+A: DOCX and PDF on eligible plans. PPTX is listed on Standard and Professional (coming soon).
+
+Q: Where does RflowZ operate?
+A: Web app at https://app.rflowz.com. Marketing site https://rflowz.com (en-MY). Email support@rflowz.com. No public street address on this site.
 
 Q: How do I contact support?
 A: Email support@rflowz.com or visit https://rflowz.com/contact

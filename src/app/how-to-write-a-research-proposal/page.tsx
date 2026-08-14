@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 
 import {
   SeoCta,
@@ -124,6 +125,24 @@ export default function HowToWriteResearchProposalPage() {
             </li>
           ))}
         </ol>
+
+        <p className="mt-10 text-sm leading-7 text-slate-700">
+          You can follow the same steps in RflowZ on the{' '}
+          <Link
+            href="/#pricing"
+            className="font-medium text-blue-800 underline-offset-2 hover:underline"
+          >
+            Free plan
+          </Link>
+          . Read{' '}
+          <Link
+            href="/about"
+            className="font-medium text-blue-800 underline-offset-2 hover:underline"
+          >
+            about RflowZ
+          </Link>{' '}
+          if you want the product story before you sign up.
+        </p>
 
         <SeoFaqSection faqs={faqs} />
         <SeoCta

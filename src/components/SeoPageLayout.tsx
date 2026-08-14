@@ -4,6 +4,9 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { StickyMobileCta } from '@/components/StickyMobileCta'
+import { cta } from '@/lib/cta'
+import { jsonLdScript } from '@/lib/jsonLd'
 import { siteConfig } from '@/lib/site'
 
 export type SeoBreadcrumb = {
@@ -48,12 +51,16 @@ export function SeoPageLayout({
         <script
           key={index}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(data) }}
         />
       ))}
       <Header />
-      <main>
-        <Container className="py-16 sm:py-20">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0 outline-none"
+      >
+        <Container className="py-10 sm:py-16 lg:py-20">
           <nav aria-label="Breadcrumb" className="mb-8 text-sm text-slate-500">
             <ol className="flex flex-wrap items-center gap-2">
               {breadcrumbs.map((crumb, index) => (
@@ -62,7 +69,7 @@ export function SeoPageLayout({
                   {index === breadcrumbs.length - 1 ? (
                     <span className="text-slate-700">{crumb.name}</span>
                   ) : (
-                    <Link href={crumb.href} className="hover:text-slate-900">
+                    <Link href={crumb.href} className="underline-offset-2 hover:text-slate-900 hover:underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                       {crumb.name}
                     </Link>
                   )}
@@ -74,6 +81,7 @@ export function SeoPageLayout({
         </Container>
       </main>
       <Footer />
+      <StickyMobileCta />
     </>
   )
 }
@@ -86,20 +94,34 @@ export function SeoCta({
   description?: string
 }) {
   return (
-    <div className="mt-14 rounded-3xl bg-blue-600 px-8 py-10 text-center sm:px-12">
+    <div className="mt-14 rounded-3xl bg-blue-600 px-5 py-10 text-center sm:px-12">
       <h2 className="font-display text-2xl tracking-tight text-white sm:text-3xl">
         {title}
       </h2>
-      <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-blue-100">
+      <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-blue-50">
         {description}
       </p>
-      <Button
-        href={`${siteConfig.appUrl}/register`}
-        color="white"
-        className="mt-8"
-      >
-        Get started for free
-      </Button>
+      <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-x-4">
+        <Button
+          href={cta.registerHref}
+          color="white"
+          className="w-full sm:w-auto"
+          data-cta="seo"
+          data-cta-action="register"
+        >
+          {cta.primaryLabel}
+        </Button>
+        <Button
+          href={cta.pricingHref}
+          variant="outline"
+          color="white"
+          className="w-full sm:w-auto"
+          data-cta="seo"
+          data-cta-action="pricing"
+        >
+          {cta.secondaryLabel}
+        </Button>
+      </div>
     </div>
   )
 }
@@ -117,7 +139,7 @@ export function SeoRelatedLinks({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm font-medium text-blue-600 hover:text-blue-800"
+              className="inline-flex min-h-11 items-center text-sm font-medium text-blue-700 underline-offset-2 hover:text-blue-800 hover:underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               {link.label}
             </Link>
@@ -126,7 +148,7 @@ export function SeoRelatedLinks({
         <li>
           <Link
             href="/#pricing"
-            className="text-sm font-medium text-blue-600 hover:text-blue-800"
+            className="inline-flex min-h-11 items-center text-sm font-medium text-blue-700 underline-offset-2 hover:text-blue-800 hover:underline focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             Pricing
           </Link>

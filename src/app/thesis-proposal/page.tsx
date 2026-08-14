@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import Link from 'next/link'
 
 import {
   SeoCta,
@@ -92,7 +93,12 @@ export default function ThesisProposalPage() {
           <h2 className="font-display text-2xl text-slate-900">
             Master’s vs PhD proposals
           </h2>
-          <div className="overflow-x-auto">
+          <div
+            className="overflow-x-auto rounded-lg focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            tabIndex={0}
+            role="region"
+            aria-label="Master’s versus PhD proposal comparison"
+          >
             <table className="w-full min-w-[520px] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-slate-200">
@@ -133,9 +139,24 @@ export default function ThesisProposalPage() {
             Start free while you learn the workflow
           </h2>
           <p>
-            New accounts begin on the Free plan so you can explore Ask Prof Z
-            and exports with watermarked limits. Upgrade when you need more
-            proposals, unlimited RAG, or PPTX.
+            New accounts begin on the{' '}
+            <Link
+              href="/#pricing"
+              className="font-medium text-blue-800 underline-offset-2 hover:underline"
+            >
+              Free plan
+            </Link>{' '}
+            so you can explore Ask Prof Z and exports with watermarked limits.
+            Upgrade to Starter when you need more proposals and unlimited RAG.
+            PPTX is listed on Standard and Professional, which are coming soon.
+            See{' '}
+            <Link
+              href="/about"
+              className="font-medium text-blue-800 underline-offset-2 hover:underline"
+            >
+              about RflowZ
+            </Link>{' '}
+            for who the workspace is for.
           </p>
         </section>
 

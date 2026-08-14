@@ -1,12 +1,14 @@
 'use client'
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import clsx from 'clsx'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { planComparison, pricingPlans } from '@/lib/plans'
+import { track } from '@/lib/analytics'
 import { gsap, useGSAP } from '@/lib/gsap'
+import { planComparison, pricingPlans } from '@/lib/plans'
+import { scrollReveal } from '@/lib/reveal'
 
 function SwirlyDoodle(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -74,24 +76,26 @@ function Plan({
   isFree = false,
   footerNote,
   comingSoonNote,
+  ctaLabel = 'Get started',
 }: {
   name: string
   price: string
   description: string
-  href: string
+  href?: string
   features: Array<string>
   notIncluded: Array<string>
   featured?: boolean
   isFree?: boolean
   footerNote?: string
   comingSoonNote?: string
+  ctaLabel?: string
 }) {
   return (
     <article
       className={clsx(
         'relative flex h-full flex-col rounded-3xl p-6 sm:p-8',
         featured
-          ? 'bg-blue-600 shadow-xl shadow-blue-900/30 ring-2 ring-blue-400 lg:scale-[1.02]'
+          ? 'bg-blue-600 shadow-xl shadow-blue-900/30 ring-2 ring-blue-400 xl:scale-[1.02]'
           : 'bg-slate-800/60 ring-1 ring-slate-700/80',
       )}
     >
@@ -108,7 +112,7 @@ function Plan({
             <p
               className={clsx(
                 'mt-2 text-sm leading-6',
-                featured ? 'text-blue-100' : 'text-slate-400',
+                featured ? 'text-blue-50' : 'text-slate-300',
               )}
             >
               {description}
@@ -123,7 +127,7 @@ function Plan({
               <span
                 className={clsx(
                   'ml-1 text-lg font-normal',
-                  featured ? 'text-blue-100' : 'text-slate-400',
+                  featured ? 'text-blue-50' : 'text-slate-300',
                 )}
               >
                 /mo
@@ -134,16 +138,16 @@ function Plan({
             <p
               className={clsx(
                 'mt-1 text-sm',
-                featured ? 'text-blue-100' : 'text-slate-400',
+                featured ? 'text-blue-50' : 'text-slate-300',
               )}
             >
-              Billed annually
+              USD / month
             </p>
           ) : (
             <p
               className={clsx(
                 'mt-1 text-sm',
-                featured ? 'text-blue-100' : 'text-slate-400',
+                featured ? 'text-blue-50' : 'text-slate-300',
               )}
             >
               No credit card required
@@ -156,7 +160,7 @@ function Plan({
         <p
           className={clsx(
             'text-xs font-semibold uppercase tracking-wide',
-            featured ? 'text-blue-100' : 'text-slate-400',
+            featured ? 'text-blue-50' : 'text-slate-300',
           )}
         >
           What&apos;s included
@@ -171,7 +175,7 @@ function Plan({
               )}
             >
               <CheckIcon
-                className={featured ? 'text-blue-100' : 'text-emerald-400'}
+                className={featured ? 'text-blue-50' : 'text-emerald-400'}
               />
               <span>{feature}</span>
             </li>
@@ -180,14 +184,14 @@ function Plan({
 
         {notIncluded.length > 0 ? (
           <div className="mt-6 border-t border-white/10 pt-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wide text-slate-300">
               Not included
             </p>
             <ul role="list" className="mt-4 flex flex-col gap-y-2.5">
               {notIncluded.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-3 text-sm leading-6 text-slate-400"
+                  className="flex gap-3 text-sm leading-6 text-slate-300"
                 >
                   <XIcon className="text-slate-500" />
                   <span>{item}</span>
@@ -198,21 +202,37 @@ function Plan({
         ) : null}
       </div>
 
-      <Button
-        href={href}
-        variant={featured ? 'solid' : 'outline'}
-        color="white"
-        className="mt-8 w-full"
-        aria-label={`Get started with the ${name} plan for ${price}`}
-      >
-        Get started
-      </Button>
+      {href && !comingSoonNote ? (
+        <Button
+          href={href}
+          variant={featured ? 'solid' : 'outline'}
+          color="white"
+          className="mt-8 w-full"
+          aria-label={`${ctaLabel} with the ${name} plan`}
+          data-cta="pricing"
+          data-cta-action="register"
+          data-plan={name}
+        >
+          {ctaLabel}
+        </Button>
+      ) : (
+        <p
+          className={clsx(
+            'mt-8 w-full rounded-full py-2 text-center text-sm font-semibold',
+            featured
+              ? 'bg-white/10 text-white'
+              : 'ring-1 ring-slate-600 text-slate-300',
+          )}
+        >
+          Coming soon
+        </p>
+      )}
 
       {comingSoonNote ? (
         <p
           className={clsx(
             'mt-3 text-center text-xs leading-5',
-            featured ? 'text-blue-100' : 'text-slate-400',
+            featured ? 'text-blue-50' : 'text-slate-300',
           )}
         >
           {comingSoonNote}
@@ -223,7 +243,7 @@ function Plan({
         <p
           className={clsx(
             'mt-3 text-center text-xs leading-5',
-            featured ? 'text-blue-100' : 'text-slate-400',
+            featured ? 'text-blue-50' : 'text-slate-300',
           )}
         >
           {footerNote}
@@ -244,51 +264,49 @@ export function Pricing() {
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.from(headingRef.current, {
-          opacity: 0,
-          y: 40,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
-
-        if (cardsRef.current) {
-          gsap.from(Array.from(cardsRef.current.children), {
-            opacity: 0,
-            scale: 0.94,
-            duration: 0.6,
-            ease: 'power3.out',
-            stagger: 0.1,
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-              once: true,
-            },
-          })
-        }
-
-        gsap.from(tableRef.current, {
-          opacity: 0,
-          y: 30,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: tableRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-            once: true,
-          },
-        })
+        const cleanups = [
+          scrollReveal(headingRef.current, headingRef.current),
+          cardsRef.current
+            ? scrollReveal(Array.from(cardsRef.current.children), cardsRef.current, {
+                stagger: 0.08,
+              })
+            : undefined,
+          scrollReveal(tableRef.current, tableRef.current),
+        ]
+        return () => cleanups.forEach((fn) => fn?.())
       })
     },
     { scope: sectionRef },
   )
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) {
+      return
+    }
+
+    let sent = false
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (sent) {
+          return
+        }
+        const visible = entries.some(
+          (entry) => entry.isIntersecting && entry.intersectionRatio >= 0.4,
+        )
+        if (!visible) {
+          return
+        }
+        sent = true
+        track('pricing_view', { page_path: window.location.pathname })
+        observer.disconnect()
+      },
+      { threshold: 0.4 },
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
@@ -301,13 +319,20 @@ export function Pricing() {
         <div ref={headingRef} className="mx-auto max-w-3xl md:text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
             <span className="relative whitespace-nowrap">
-              <SwirlyDoodle className="absolute left-0 top-1/2 h-[1em] w-full fill-blue-400" />
+              <SwirlyDoodle className="absolute left-0 top-[calc(100%-0.15em)] h-[0.35em] w-full fill-blue-400" />
               <span className="relative">Choose Your Plan</span>
             </span>
           </h2>
-          <p className="mt-4 text-lg leading-8 text-slate-400">
-            Start free on signup, or choose a paid plan with monthly or yearly
-            billing.
+          <p className="mt-4 text-lg leading-8 text-slate-300">
+            Create a free RflowZ account with no credit card. After signup you
+            land in Ask Prof Z onboarding. As of August 2026 this site lists
+            Starter as the live paid path (5-day trial). Standard and
+            Professional are coming soon. Confirm the amount in the app before
+            you pay.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Free exports include a watermark. PPTX export is on Standard and
+            Professional when those plans launch.
           </p>
         </div>
 
@@ -328,18 +353,26 @@ export function Pricing() {
               isFree={plan.isFree}
               footerNote={plan.footerNote}
               comingSoonNote={plan.comingSoonNote}
+              ctaLabel={plan.ctaLabel}
             />
           ))}
         </div>
 
-        <div ref={tableRef} className="mx-auto mt-16 max-w-5xl overflow-x-auto xl:max-w-6xl">
+        <div
+          ref={tableRef}
+          tabIndex={0}
+          role="region"
+          aria-label="Plan comparison"
+          className="mx-auto mt-16 max-w-5xl overflow-x-auto rounded-lg xl:max-w-6xl focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
           <h3 className="text-center font-display text-xl text-white">
             Plan comparison
           </h3>
           <table className="mt-6 w-full min-w-[640px] border-collapse text-left text-sm text-slate-200">
             <caption className="sr-only">
-              RflowZ pricing plan comparison by proposals, exports, watermark,
-              and PPTX support
+              RflowZ pricing plan comparison by monthly USD rate, proposals,
+              exports, watermark, and PPTX support. Standard and Professional
+              are coming soon.
             </caption>
             <thead>
               <tr className="border-b border-slate-700">
@@ -347,10 +380,7 @@ export function Pricing() {
                   Plan
                 </th>
                 <th scope="col" className="px-4 py-3 font-semibold text-white">
-                  Monthly
-                </th>
-                <th scope="col" className="px-4 py-3 font-semibold text-white">
-                  Annual
+                  Price / mo
                 </th>
                 <th scope="col" className="px-4 py-3 font-semibold text-white">
                   Proposals
@@ -376,7 +406,6 @@ export function Pricing() {
                     {plan.name}
                   </th>
                   <td className="px-4 py-3">{plan.monthly}</td>
-                  <td className="px-4 py-3">{plan.annual}/mo</td>
                   <td className="px-4 py-3">{plan.proposals}</td>
                   <td className="px-4 py-3">{plan.exports}</td>
                   <td className="px-4 py-3">{plan.watermark}</td>
@@ -387,10 +416,12 @@ export function Pricing() {
           </table>
         </div>
 
-        <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-slate-500">
-          All paid plans shown at annual billing. Monthly billing is also
-          available in the app. Standard and Professional subscription checkout
-          is coming soon.
+        <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-slate-300">
+          After signup you start on Free. Paid checkout (when you choose it)
+          includes a 5-day trial; if you do not continue, you stay on Free
+          limits. Prices are listed in USD per month. Choose monthly or annual
+          billing in the app when you subscribe. Standard and Professional
+          checkout is coming soon.
         </p>
       </Container>
     </section>

@@ -6,6 +6,7 @@ import {
   SeoPageLayout,
   SeoRelatedLinks,
 } from '@/components/SeoPageLayout'
+import { entityFacts, listedPricingSummary } from '@/lib/entity'
 import { buildPageMetadata, seoPages } from '@/lib/seo-pages'
 import { siteConfig } from '@/lib/site'
 
@@ -36,6 +37,7 @@ export default function AboutPage() {
         founder: {
           '@type': 'Person',
           name: siteConfig.founder.name,
+          jobTitle: 'Founder',
           sameAs: [...siteConfig.sameAs],
         },
       },
@@ -55,37 +57,76 @@ export default function AboutPage() {
           {page.h1}
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
-          {siteConfig.name} is an AI-powered research proposal platform for
-          students, academics, and research teams. We help you draft structured
-          proposals with Ask Prof Z, search OpenAlex and policy/media sources in
-          your Library, ground literature with RAG, and export with citation
-          integrity checks.
+          {entityFacts.organization.name} is an {entityFacts.organization.type}{' '}
+          for {entityFacts.audience} The product lives at{' '}
+          {entityFacts.organization.app}.
         </p>
 
         <section className="mt-12 space-y-6 text-sm leading-7 text-slate-700">
-          <h2 className="font-display text-2xl text-slate-900">What we build</h2>
+          <h2 className="font-display text-2xl text-slate-900">
+            What RflowZ offers
+          </h2>
+          <p>{entityFacts.differentiator}</p>
           <ul className="list-disc space-y-2 pl-5">
-            <li>Structured research proposal workspaces</li>
             <li>Ask Prof Z for grounded section drafting and refinement</li>
-            <li>Source Library with OpenAlex academic search</li>
-            <li>RAG grounding and citation integrity before export</li>
-            <li>DOCX, PDF, and PPTX export (plan-dependent)</li>
+            <li>
+              Source Library with OpenAlex academic search plus policy/media
+              sources
+            </li>
+            <li>
+              {entityFacts.product.rag}
+            </li>
+            <li>Citation integrity checks before export</li>
+            <li>DOCX and PDF export; PPTX on higher plans when those launch</li>
           </ul>
 
           <h2 className="font-display text-2xl text-slate-900">
-            What we do not claim
+            How RflowZ works
+          </h2>
+          <p>{entityFacts.howItWorks}</p>
+
+          <h2 className="font-display text-2xl text-slate-900">
+            Where RflowZ operates
           </h2>
           <p>
-            We do not market Mendeley as a current integration. TreZ and TAM are
-            listed as coming soon on higher plans — not live engines today. We
-            do not fabricate citations or review ratings for marketing.
+            {entityFacts.organization.operates} Marketing locale is{' '}
+            {entityFacts.organization.locale}. Support:{' '}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="font-medium text-blue-600 hover:text-blue-800"
+            >
+              {siteConfig.email}
+            </a>
+            .
           </p>
 
-          <h2 className="font-display text-2xl text-slate-900">Founder</h2>
+          <h2 className="font-display text-2xl text-slate-900">
+            RflowZ pricing (as of {entityFacts.asOf})
+          </h2>
+          <p>{listedPricingSummary()}</p>
           <p>
-            {siteConfig.name} is led by {siteConfig.founder.name} (
-            {siteConfig.founder.credentials}). Follow updates and academic
-            content on{' '}
+            See{' '}
+            <Link
+              href="/#pricing"
+              className="font-medium text-blue-600 hover:text-blue-800"
+            >
+              RflowZ pricing
+            </Link>{' '}
+            on the homepage.
+          </p>
+
+          <h2 className="font-display text-2xl text-slate-900">
+            What RflowZ does not claim
+          </h2>
+          <p>{entityFacts.limitations}</p>
+
+          <h2 className="font-display text-2xl text-slate-900">
+            Who leads RflowZ
+          </h2>
+          <p>
+            {entityFacts.organization.name} is led by {entityFacts.founder.name}{' '}
+            ({entityFacts.founder.credentials}), {entityFacts.founder.role}.
+            Follow academic updates on{' '}
             {siteConfig.social.map((profile, index) => (
               <span key={profile.href}>
                 {index > 0 ? ' and ' : null}
