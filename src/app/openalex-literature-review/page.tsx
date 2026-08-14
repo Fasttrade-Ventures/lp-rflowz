@@ -20,19 +20,19 @@ const faqs = [
       'Yes. Find academic papers through OpenAlex inside your Source Library, then attach selected sources to literature sub-topics before Ask Prof Z writes.',
   },
   {
-    question: 'What is RAG grounding for literature review?',
+    question: 'What is RAG for literature review?',
     answer:
-      'RAG (retrieval-augmented generation) grounds Ask Prof Z on the sources you attach, so synthesis is tied to your selected papers and policy/media documents rather than unconstrained chat memory alone.',
+      'RAG (retrieval-augmented generation) uses the sources you attach when Ask Prof Z writes, so synthesis is tied to your selected papers and policy/media documents rather than unconstrained chat memory alone.',
   },
   {
     question: 'Can I add non-academic sources?',
     answer:
-      'Yes. The Library supports academic OpenAlex results plus policy and media sources so you can ground proposals with the evidence your topic needs.',
+      'Yes. The Library supports academic OpenAlex results plus policy and media sources so you can back proposals with the evidence your topic needs.',
   },
   {
     question: 'Why is Ask Prof Z disabled on a sub-topic?',
     answer:
-      'Ask Prof Z for grounded literature synthesis unlocks after enough usable sources are attached (typically at least two verified academic sources). Attach OpenAlex results, then generate.',
+      'Ask Prof Z for literature synthesis unlocks after enough usable sources are attached (typically at least two verified academic sources). Attach OpenAlex results, then generate.',
   },
 ]
 
@@ -77,19 +77,19 @@ export default function OpenAlexLiteratureReviewPage() {
         <p className="mt-6 text-lg leading-8 text-slate-600">
           Build literature that cites real sources. Search OpenAlex, attach
           papers to your Library, meet the source threshold, then Ask Prof Z to
-          synthesize with RAG grounding and citation integrity checks.
+          synthesize with RAG and citation integrity checks.
         </p>
 
         <section className="mt-12 space-y-6 text-sm leading-7 text-slate-700">
           <h2 className="font-display text-2xl text-slate-900">
-            A grounded literature workflow
+            An OpenAlex literature workflow
           </h2>
           <ol className="list-decimal space-y-3 pl-5">
             <li>Search OpenAlex (and policy/media) from your Source Library.</li>
             <li>Attach usable sources to each literature sub-topic.</li>
             <li>
               Unlock Ask Prof Z once enough verified sources are linked for
-              grounded synthesis.
+              synthesis.
             </li>
             <li>
               Review citations, then continue to framework and proposal export.
@@ -97,10 +97,10 @@ export default function OpenAlexLiteratureReviewPage() {
           </ol>
 
           <h2 className="font-display text-2xl text-slate-900">
-            RAG vs ungrounded AI writing
+            RAG vs generic AI writing
           </h2>
           <p>
-            Generic chat tools can invent papers. RAG grounding ties Ask Prof Z
+            Generic chat tools can invent papers. RAG ties Ask Prof Z
             to sources you selected. Citation integrity checks then help catch
             unresolved or mismatched references before you export DOCX or PDF.
           </p>

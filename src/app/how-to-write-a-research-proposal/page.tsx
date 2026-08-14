@@ -20,8 +20,8 @@ const steps = [
     text: 'State the gap, context, and why the study matters. In RflowZ, draft and refine the problem statement with Ask Prof Z.',
   },
   {
-    name: 'Build a grounded literature base',
-    text: 'Search OpenAlex, attach sources in your Library, and synthesize literature with RAG-grounded Ask Prof Z instead of inventing references.',
+    name: 'Build a literature base',
+    text: 'Search OpenAlex, attach sources in your Library, and synthesize literature with Ask Prof Z and RAG instead of inventing references.',
   },
   {
     name: 'Define questions and objectives',
@@ -55,7 +55,7 @@ const faqs = [
   {
     question: 'Can AI write my entire proposal?',
     answer:
-      'Treat AI as a drafting assistant. You remain responsible for originality, ethics, accuracy, and supervisor requirements. RflowZ is designed for grounded drafting and export — not unsupervised submission.',
+      'Treat AI as a drafting assistant. You remain responsible for originality, ethics, accuracy, and supervisor requirements. RflowZ is designed for drafting with sources you attach, then export — not unsupervised submission.',
   },
 ]
 

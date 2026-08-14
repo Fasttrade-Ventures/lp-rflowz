@@ -175,7 +175,7 @@ export function SecondaryFeatures() {
               Streamline your research proposal writing process.
             </h2>
             <p className="mt-4 text-lg tracking-tight text-slate-700">
-              Ask Prof Z, OpenAlex Library search, RAG grounding, and export
+              Ask Prof Z, OpenAlex Library search, RAG, and export
               tools help you finish stronger research proposals faster.
             </p>
           </AnimateIn>

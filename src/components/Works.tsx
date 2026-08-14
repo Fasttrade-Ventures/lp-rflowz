@@ -31,7 +31,7 @@ const features = [
   {
     title: 'Step 3',
     description:
-      'In RflowZ, search OpenAlex, attach Library sources, and ground literature with RAG.',
+      'In RflowZ, search OpenAlex, attach Library sources, and synthesize literature with RAG.',
     image: openAlexSourceLibrary,
     imageAlt: 'Step 3: Find OpenAlex sources in the RflowZ Library',
   },
@@ -68,7 +68,7 @@ export function Works() {
     <section
       id="how-it-works"
       aria-label="How RflowZ research proposal writing works"
-      className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
+      className="relative overflow-hidden bg-blue-600 pb-20 pt-20 sm:py-32"
     >
       <Image
         className="absolute right-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -92,7 +92,7 @@ export function Works() {
         >
           {({ selectedIndex }) => (
             <>
-              <TabList className="-mx-4 flex gap-x-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-5 lg:block lg:space-y-1 lg:whitespace-normal">
+              <TabList className="flex flex-wrap justify-center gap-2 lg:col-span-5 lg:block lg:space-y-1 lg:whitespace-normal">
                   {features.map((feature, featureIndex) => (
                     <Tab
                       key={feature.title}
@@ -129,9 +129,8 @@ export function Works() {
               <TabPanels className="lg:col-span-7">
                 {features.map((feature) => (
                   <TabPanel key={feature.title} unmount={false}>
-                    <div className="relative sm:px-6 lg:hidden">
-                      <div className="absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-slate-900/75 ring-1 ring-inset ring-white/20 sm:inset-x-0 sm:rounded-t-xl" />
-                      <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
+                    <div className="lg:hidden">
+                      <p className="mx-auto max-w-2xl text-center text-base text-white">
                         {feature.description}
                       </p>
                     </div>

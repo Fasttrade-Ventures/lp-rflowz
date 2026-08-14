@@ -16,7 +16,7 @@ const audiences = [
   {
     title: 'Researchers using RflowZ',
     description:
-      'RflowZ is for academic researchers who need a structured proposal workspace, OpenAlex Library search, RAG-grounded literature, and citation checks before export.',
+      'RflowZ is for academic researchers who need a structured proposal workspace, OpenAlex Library search, RAG literature, and citation checks before export.',
   },
   {
     title: 'Supervisors and teams using RflowZ',
@@ -67,7 +67,7 @@ export function WhoItsFor() {
           <p className="mt-4 text-lg leading-8 text-slate-600">
             RflowZ is an AI-powered research proposal platform for students,
             academics, and research teams. Create structured proposals with Ask
-            Prof Z, search OpenAlex in your Library, ground literature with RAG,
+            Prof Z, search OpenAlex in your Library, synthesize literature with RAG,
             and export submission-ready documents.             Explore our{' '}
             <Link
               href="/resources"

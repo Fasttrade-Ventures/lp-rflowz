@@ -19,7 +19,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     title: siteConfig.tagline,
     description: siteConfig.description,
     primaryKeyword: 'AI research proposal writer',
-    h1: 'Write a grounded research proposal with Ask Prof Z',
+    h1: 'Write a research proposal with Ask Prof Z',
     relatedLinks: [
       {
         href: '/ai-research-proposal-writer',
@@ -35,7 +35,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     path: '/ai-research-proposal-writer',
     title: 'AI Research Proposal Writer — Ask Prof Z',
     description:
-      'Write research proposals with Ask Prof Z. Structured AI drafting, OpenAlex Library, RAG grounding, citation integrity, and DOCX/PDF/PPTX export. Free plan, no credit card.',
+      'Write research proposals with Ask Prof Z. Structured AI drafting, OpenAlex Library, RAG, citation integrity, and DOCX/PDF/PPTX export. Free plan, no credit card.',
     primaryKeyword: 'AI research proposal writer',
     h1: 'AI research proposal writer for students and researchers',
     relatedLinks: [
@@ -56,9 +56,9 @@ export const seoPages: Record<string, SeoPageConfig> = {
     path: '/openalex-literature-review',
     title: 'OpenAlex Literature Review with RAG Grounding',
     description:
-      'Search OpenAlex, attach sources in your RflowZ Library, and synthesize literature with RAG-grounded Ask Prof Z plus citation integrity checks before export.',
+      'Search OpenAlex, attach sources in your RflowZ Library, and synthesize literature with RAG plus citation integrity checks before export.',
     primaryKeyword: 'OpenAlex literature review',
-    h1: 'OpenAlex literature review with grounded RAG',
+    h1: 'OpenAlex literature review with RAG',
     relatedLinks: [
       {
         href: '/ai-research-proposal-writer',
@@ -98,7 +98,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     path: '/thesis-proposal',
     title: 'Thesis & Dissertation Proposal Tool',
     description:
-      'Write master’s and PhD thesis proposals with Ask Prof Z, OpenAlex Library search, RAG-grounded literature, structured sections, and DOCX/PDF export. Start free.',
+      'Write master’s and PhD thesis proposals with Ask Prof Z, OpenAlex Library search, RAG literature, structured sections, and DOCX/PDF export. Start free.',
     primaryKeyword: 'thesis proposal',
     h1: 'Thesis and dissertation proposal writing with RflowZ',
     relatedLinks: [
@@ -119,7 +119,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     path: '/rflowz-vs-chatgpt',
     title: 'RflowZ vs ChatGPT for Research Proposals',
     description:
-      'Compare RflowZ and ChatGPT for research proposals: structured workflow, OpenAlex Library, RAG grounding, citation integrity, and DOCX/PDF/PPTX export.',
+      'Compare RflowZ and ChatGPT for research proposals: structured workflow, OpenAlex Library, RAG, citation integrity, and DOCX/PDF/PPTX export.',
     primaryKeyword: 'ChatGPT research proposal',
     h1: 'RflowZ vs ChatGPT for research proposals',
     relatedLinks: [
@@ -140,7 +140,7 @@ export const seoPages: Record<string, SeoPageConfig> = {
     path: '/about',
     title: 'About RflowZ',
     description:
-      'RflowZ is an AI research proposal platform for students and researchers — Ask Prof Z, OpenAlex Library, RAG grounding, citation integrity, and document export.',
+      'RflowZ is an AI research proposal platform for students and researchers — Ask Prof Z, OpenAlex Library, RAG, citation integrity, and document export.',
     primaryKeyword: 'RflowZ',
     h1: 'About RflowZ',
     relatedLinks: [

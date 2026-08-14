@@ -68,7 +68,7 @@ export default function AboutPage() {
           </h2>
           <p>{entityFacts.differentiator}</p>
           <ul className="list-disc space-y-2 pl-5">
-            <li>Ask Prof Z for grounded section drafting and refinement</li>
+            <li>Ask Prof Z for section drafting and refinement</li>
             <li>
               Source Library with OpenAlex academic search plus policy/media
               sources

@@ -16,13 +16,15 @@ import citationIntegrity from '@/images/screenshots/citation-integrity.png'
 const features = [
   {
     title: 'Ask Prof Z',
+    shortTitle: 'Ask Prof Z',
     description:
-      'Draft and refine proposal sections with Ask Prof Z — grounded AI writing tailored to your research topic.',
+      'Draft and refine proposal sections with Ask Prof Z — AI writing tailored to your research topic.',
     image: askProfZProblemStatement,
     imageAlt: 'RflowZ Ask Prof Z drafting a research proposal problem statement',
   },
   {
     title: 'OpenAlex Source Library',
+    shortTitle: 'OpenAlex',
     description:
       'Search OpenAlex and policy/media sources, attach them to your proposal, and keep citations organized in one Library.',
     image: openAlexSourceLibrary,
@@ -30,6 +32,7 @@ const features = [
   },
   {
     title: 'Methodology with Ask Prof Z',
+    shortTitle: 'Methodology',
     description:
       'Fill design, sampling, and analysis drafts, then generate a full methodology narrative aligned with your philosophy.',
     image: askProfZMethodology,
@@ -37,6 +40,7 @@ const features = [
   },
   {
     title: 'Citation Integrity',
+    shortTitle: 'Citations',
     description:
       'Verify references before export so unresolved or mismatched citations do not slip into your proposal.',
     image: citationIntegrity,
@@ -68,7 +72,7 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Core RflowZ features for research proposal writing"
-      className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
+      className="relative overflow-hidden bg-blue-600 pb-20 pt-20 sm:py-32"
     >
       <Image
         className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
@@ -92,7 +96,7 @@ export function PrimaryFeatures() {
         >
           {({ selectedIndex }) => (
             <>
-              <TabList className="-mx-4 flex gap-x-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-5 lg:block lg:space-y-1 lg:whitespace-normal">
+              <TabList className="flex flex-wrap justify-center gap-2 lg:col-span-5 lg:block lg:space-y-1 lg:whitespace-normal">
                   {features.map((feature, featureIndex) => (
                     <Tab
                       key={feature.title}
@@ -111,7 +115,8 @@ export function PrimaryFeatures() {
                             : 'text-white',
                         )}
                       >
-                        {feature.title}
+                        <span className="lg:hidden">{feature.shortTitle}</span>
+                        <span className="hidden lg:inline">{feature.title}</span>
                       </span>
                       <span
                         className={clsx(
@@ -129,9 +134,8 @@ export function PrimaryFeatures() {
               <TabPanels className="lg:col-span-7">
                 {features.map((feature) => (
                   <TabPanel key={feature.title} unmount={false}>
-                    <div className="relative sm:px-6 lg:hidden">
-                      <div className="absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-slate-900/75 ring-1 ring-inset ring-white/20 sm:inset-x-0 sm:rounded-t-xl" />
-                      <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
+                    <div className="lg:hidden">
+                      <p className="mx-auto max-w-2xl text-center text-base text-white">
                         {feature.description}
                       </p>
                     </div>

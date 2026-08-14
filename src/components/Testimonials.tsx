@@ -16,7 +16,7 @@ const researcherNeeds = [
   },
   {
     content:
-      'Keep literature, citations, and RAG-grounded writing in one Library so references stay tied to sources you chose.',
+      'Keep literature, citations, and RAG writing in one Library so references stay tied to sources you chose.',
     audience: 'PhD candidates',
   },
   {

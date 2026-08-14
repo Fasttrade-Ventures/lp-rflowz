@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
+import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { cta } from '@/lib/cta'
 import { siteConfig } from '@/lib/site'
@@ -48,10 +49,29 @@ export function Footer({ finale = false }: { finale?: boolean }) {
       <Container>
         <div className={finale ? 'py-16 sm:py-20' : 'py-16'}>
           {finale ? (
-            <p className="mx-auto max-w-2xl text-center font-display text-2xl font-medium leading-tight tracking-tight text-slate-900 sm:text-3xl">
-              Write the next proposal
-              <span className="mt-1 block text-blue-800">with RflowZ.</span>
-            </p>
+            <div className="relative overflow-hidden rounded-3xl bg-slate-900 px-6 py-12 text-center sm:px-12 sm:py-16">
+              <p className="mx-auto max-w-2xl font-display text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl">
+                Write the next proposal
+                <span className="mt-1 block text-blue-300">with RflowZ.</span>
+              </p>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
+                Ask Prof Z, OpenAlex Library, RAG, citation checks, and export
+                to DOCX, PDF, and PPTX.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <Button
+                  href={cta.registerHref}
+                  color="blue"
+                  data-cta="footer"
+                  data-cta-action="register"
+                >
+                  {cta.primaryLabel}
+                </Button>
+                <Button href={cta.pricingHref} variant="outline" color="white">
+                  {cta.secondaryLabel}
+                </Button>
+              </div>
+            </div>
           ) : (
             <Link href="/" aria-label={`${siteConfig.name} home`}>
               <Image
@@ -141,7 +161,7 @@ export function Footer({ finale = false }: { finale?: boolean }) {
           </div>
           <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-6 text-slate-500">
             {siteConfig.name} helps students and researchers write proposals with
-            Ask Prof Z, OpenAlex Library search, RAG grounding, and export to
+            Ask Prof Z, OpenAlex Library search, RAG, and export to
             DOCX, PDF, and PPTX. Explore our{' '}
             <Link
               href="/resources"

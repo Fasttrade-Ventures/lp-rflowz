@@ -104,10 +104,10 @@ export const pricingPlans: PlanCard[] = [
       'Perfect for beginners and occasional users looking to get started with research proposal formulation.',
     href: `${siteConfig.appUrl}/register`,
     ctaLabel: 'Get started',
-    footerNote: 'Live paid plan · 5-day trial, then Starter',
+    footerNote: 'Live paid plan',
     features: [
       'Unlimited Ask Prof Z included',
-      'Unlimited RAG — academic document grounding (policy / literature)',
+      'Unlimited RAG — academic documents (policy / literature)',
       'AI-guided research questions formulation',
       'Up to 10 proposal generations per month',
       'Up to 30 exports per month',
@@ -129,7 +129,7 @@ export const pricingPlans: PlanCard[] = [
       'Ideal for academic professionals and regular researchers needing enhanced tools and support.',
     features: [
       'Unlimited Ask Prof Z included',
-      'Unlimited RAG — academic document grounding (policy / literature)',
+      'Unlimited RAG — academic documents (policy / literature)',
       'AI-driven support for literature review structuring',
       'Up to 30 proposal generations per month',
       'PowerPoint (PPTX) export',
@@ -152,7 +152,7 @@ export const pricingPlans: PlanCard[] = [
       'Best for large-scale research projects and experienced researchers.',
     features: [
       'Unlimited Ask Prof Z included',
-      'Unlimited RAG — academic document grounding (policy / literature)',
+      'Unlimited RAG — academic documents (policy / literature)',
       'Unlimited proposal generations per month',
       'Advanced AI-guided proposal structure and referencing tools',
       'PowerPoint (PPTX) export',

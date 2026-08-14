@@ -28,7 +28,7 @@ const faqs = [
   {
     question: 'What is different for master’s vs PhD proposals?',
     answer:
-      'Master’s proposals are often shorter and more applied. PhD proposals typically demand deeper literature grounding, clearer contribution claims, and a stronger methodological justification. RflowZ supports both with the same structured workspace.',
+      'Master’s proposals are often shorter and more applied. PhD proposals typically demand a deeper literature review, clearer contribution claims, and a stronger methodological justification. RflowZ supports both with the same structured workspace.',
   },
 ]
 
@@ -73,7 +73,7 @@ export default function ThesisProposalPage() {
         <p className="mt-6 text-lg leading-8 text-slate-600">
           Master’s and PhD proposals need structure, credible sources, and
           clear methods. RflowZ helps you draft each section with Ask Prof Z,
-          build an OpenAlex-backed Library, ground literature with RAG, and
+          build an OpenAlex-backed Library, synthesize literature with RAG, and
           export a submission-ready document.
         </p>
 

@@ -22,7 +22,7 @@ const faqs = [
   {
     question: 'Does Ask Prof Z invent citations?',
     answer:
-      'Ask Prof Z can be grounded with RAG on sources you attach from your OpenAlex Library. Citation integrity checks help catch unresolved or mismatched references before export.',
+      'Ask Prof Z can use RAG on sources you attach from your OpenAlex Library. Citation integrity checks help catch unresolved or mismatched references before export.',
   },
   {
     question: 'Is there a free AI research proposal writer plan?',
@@ -46,7 +46,7 @@ const outcomes = [
     outcome: 'Find and attach real academic sources for literature work',
   },
   {
-    feature: 'RAG grounding',
+    feature: 'RAG literature',
     outcome: 'Synthesize literature from sources you selected',
   },
   {
@@ -104,7 +104,7 @@ export default function AiResearchProposalWriterPage() {
         <p className="mt-6 text-lg leading-8 text-slate-600">
           An AI research proposal writer should do more than chat. RflowZ gives
           you Ask Prof Z inside a structured proposal workspace — with OpenAlex
-          Library search, RAG grounding, citation integrity checks, and document
+          Library search, RAG, citation integrity checks, and document
           export.
         </p>
 
@@ -161,7 +161,7 @@ export default function AiResearchProposalWriterPage() {
           <ol className="list-decimal space-y-2 pl-5">
             <li>Create a proposal project and clarify your topic.</li>
             <li>Draft sections with Ask Prof Z.</li>
-            <li>Attach OpenAlex and Library sources; ground literature with RAG.</li>
+            <li>Attach OpenAlex and Library sources; synthesize literature with RAG.</li>
             <li>Review, run citation checks, export DOCX/PDF (or PPTX on higher plans).</li>
           </ol>
         </section>

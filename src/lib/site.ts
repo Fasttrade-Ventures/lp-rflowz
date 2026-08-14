@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: 'RflowZ',
   legalName: 'RFlowZ-SS',
-  tagline: 'AI Research Proposal Writer with OpenAlex & Grounded RAG',
+  tagline: 'AI Research Proposal Writer with OpenAlex & RAG',
   description:
-    'Write research proposals faster with Ask Prof Z, OpenAlex source Library, RAG-grounded literature synthesis, citation integrity checks, and DOCX, PDF, and PPTX export. Start free with no credit card required.',
+    'Write research proposals faster with Ask Prof Z, OpenAlex source Library, RAG literature synthesis, citation integrity checks, and DOCX, PDF, and PPTX export. Start free with no credit card required.',
   url: 'https://rflowz.com',
   appUrl: 'https://app.rflowz.com',
   ogImage: 'https://app.rflowz.com/images/rflowz-og-image.png',
@@ -35,7 +35,7 @@ export const siteConfig = {
     'Ask Prof Z',
     'academic AI writing assistant',
     'OpenAlex literature review',
-    'grounded literature synthesis',
+    'RAG literature synthesis',
     'RAG academic writing',
     'research source library',
     'thesis proposal',

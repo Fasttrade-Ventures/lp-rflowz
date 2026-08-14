@@ -326,7 +326,7 @@ export function Pricing() {
           <p className="mt-4 text-lg leading-8 text-slate-300">
             Create a free RflowZ account with no credit card. After signup you
             land in Ask Prof Z onboarding. As of August 2026 this site lists
-            Starter as the live paid path (5-day trial). Standard and
+            Starter as the live paid path. Standard and
             Professional are coming soon. Confirm the amount in the app before
             you pay.
           </p>
@@ -417,11 +417,9 @@ export function Pricing() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-slate-300">
-          After signup you start on Free. Paid checkout (when you choose it)
-          includes a 5-day trial; if you do not continue, you stay on Free
-          limits. Prices are listed in USD per month. Choose monthly or annual
-          billing in the app when you subscribe. Standard and Professional
-          checkout is coming soon.
+          After signup you start on Free. Prices are listed in USD per month.
+          Choose monthly or annual billing in the app when you subscribe.
+          Standard and Professional checkout is coming soon.
         </p>
       </Container>
     </section>

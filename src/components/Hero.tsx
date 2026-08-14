@@ -101,7 +101,7 @@ export function Hero() {
           ref={headlineRef}
           className="mx-auto mt-5 max-w-4xl font-display text-[clamp(1.75rem,6.5vw,4.5rem)] font-medium leading-[1.15] tracking-tight text-slate-900"
         >
-          Write a grounded research proposal with{' '}
+          Write a research proposal with{' '}
           <span className="relative text-blue-800 sm:whitespace-nowrap">
             <svg
               ref={underlineRef}
@@ -120,7 +120,7 @@ export function Hero() {
           className="mx-auto mt-6 max-w-2xl text-base tracking-tight text-slate-700 sm:text-lg"
         >
           RflowZ helps students and researchers search OpenAlex in the Source
-          Library, ground drafts with RAG, run citation checks, and export to
+          Library, draft with RAG, run citation checks, and export to
           DOCX, PDF, or PPTX.
         </p>
         <p

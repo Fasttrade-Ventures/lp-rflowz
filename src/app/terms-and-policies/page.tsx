@@ -105,7 +105,7 @@ export default function TermsAndPolicies() {
               <ul className="mt-2 list-disc pl-5">
                 <li>Unlimited Ask Prof Z included</li>
                 <li>
-                  Unlimited RAG — academic document grounding (policy /
+                  Unlimited RAG — academic documents (policy /
                   literature)
                 </li>
                 <li>AI-guided research questions formulation</li>
@@ -118,7 +118,7 @@ export default function TermsAndPolicies() {
               <ul className="mt-2 list-disc pl-5">
                 <li>Unlimited Ask Prof Z included</li>
                 <li>
-                  Unlimited RAG — academic document grounding (policy /
+                  Unlimited RAG — academic documents (policy /
                   literature)
                 </li>
                 <li>AI-driven support for literature review structuring</li>
@@ -136,7 +136,7 @@ export default function TermsAndPolicies() {
               <ul className="mt-2 list-disc pl-5">
                 <li>Unlimited Ask Prof Z included</li>
                 <li>
-                  Unlimited RAG — academic document grounding (policy /
+                  Unlimited RAG — academic documents (policy /
                   literature)
                 </li>
                 <li>Unlimited proposal generations per month</li>
@@ -157,8 +157,8 @@ export default function TermsAndPolicies() {
                 </li>
               </ul>
               <p className="mt-4">
-                All payments are non-refundable except as required by law. Paid
-                plans include a 5-day free trial. Users can choose monthly or
+                All payments are non-refundable except as required by law. Users
+                can choose monthly or
                 annual billing in the app when they subscribe. The monthly USD
                 rates listed above match the Yearly billing view of in-app
                 plans at {siteConfig.appUrl}/subscription as of August 2026.
@@ -233,7 +233,7 @@ export default function TermsAndPolicies() {
               <p className="mt-4">
                 {siteConfig.name} is committed to maintaining the integrity of academic
                 research. Citations are managed through your Source Library
-                (including OpenAlex academic search) with RAG grounding and
+                (including OpenAlex academic search) with RAG and
                 citation integrity checks so references stay genuine and
                 traceable. Users must not manually alter citations to
                 misrepresent sources or create fake references.

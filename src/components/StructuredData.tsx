@@ -73,7 +73,7 @@ export function StructuredData() {
     featureList: [
       'Ask Prof Z AI research proposal writing',
       'OpenAlex academic source Library',
-      'RAG-grounded literature synthesis',
+      'RAG literature synthesis',
       'Citation integrity verification',
       'Proposed framework with Mermaid diagrams',
       'DOCX, PDF, and PPTX export',

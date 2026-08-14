@@ -51,7 +51,7 @@ export function CallToAction() {
       <Container className="relative">
         <div ref={contentRef} className="mx-auto max-w-2xl text-center">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
-            Start a grounded proposal today
+            Start a proposal today
           </h2>
           <p className="mt-4 text-lg tracking-tight text-blue-50">
             Create a Free account, open Ask Prof Z, and work through Library,

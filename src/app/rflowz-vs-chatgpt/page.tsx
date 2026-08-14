@@ -25,7 +25,7 @@ const rows = [
     chatgpt: 'No native OpenAlex Library',
   },
   {
-    feature: 'RAG-grounded literature on selected sources',
+    feature: 'RAG literature on selected sources',
     rflowz: 'Yes — Ask Prof Z with attached sources',
     chatgpt: 'Depends on what you paste; easy to invent cites',
   },
@@ -50,7 +50,7 @@ const faqs = [
   {
     question: 'Can I still use ChatGPT with RflowZ?',
     answer:
-      'Yes. Many researchers brainstorm in general AI tools, then use RflowZ for structured drafting, Library sources, grounding, and export.',
+      'Yes. Many researchers brainstorm in general AI tools, then use RflowZ for structured drafting, Library sources, RAG synthesis, and export.',
   },
   {
     question: 'Is RflowZ only for ChatGPT users?',
@@ -60,7 +60,7 @@ const faqs = [
   {
     question: 'When is ChatGPT enough?',
     answer:
-      'ChatGPT can help brainstorm wording. If you need a structured proposal pipeline, OpenAlex Library search, RAG grounding, citation checks, and document export, RflowZ is purpose-built for that job.',
+      'ChatGPT can help brainstorm wording. If you need a structured proposal pipeline, OpenAlex Library search, RAG, citation checks, and document export, RflowZ is purpose-built for that job.',
   },
 ]
 
@@ -104,7 +104,7 @@ export default function RflowzVsChatgptPage() {
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-600">
           ChatGPT is a general assistant. RflowZ is a research proposal
-          workspace with Ask Prof Z, OpenAlex Library search, RAG grounding,
+          workspace with Ask Prof Z, OpenAlex Library search, RAG,
           citation integrity checks, and document export.
         </p>
 
@@ -158,7 +158,7 @@ export default function RflowzVsChatgptPage() {
           </h2>
           <p>
             Choose RflowZ when you need an end-to-end proposal pipeline:
-            structured sections, real academic search, grounded literature, and
+            structured sections, real academic search, Library literature, and
             export formats reviewers expect — without rebuilding that process
             from scratch in a chat thread.
           </p>
@@ -167,7 +167,7 @@ export default function RflowzVsChatgptPage() {
           </h2>
           <p>
             Use ChatGPT for early brainstorming or language practice, then move
-            into RflowZ when you need Library sources, grounded synthesis, and
+            into RflowZ when you need Library sources, RAG synthesis, and
             export-ready proposal structure.
           </p>
         </section>
