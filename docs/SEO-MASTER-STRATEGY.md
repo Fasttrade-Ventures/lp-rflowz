@@ -346,7 +346,7 @@ No URL changes without redirects.
 | Plan | LP amount | Sellable on LP | Schema |
 |------|-----------|----------------|--------|
 | Free | $0 | Yes | Offer InStock |
-| Starter | $3.99/mo | Yes (5-day trial) | Offer InStock |
+| Starter | $3.99/mo | Yes (paid, no trial) | Offer InStock |
 | Standard | $4.99/mo | Coming soon | Offer PreOrder |
 | Professional | $7.99/mo | Coming soon | Offer PreOrder |
 
