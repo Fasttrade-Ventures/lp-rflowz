@@ -15,7 +15,7 @@ Engine first: prices. Gearbox: entity + passages. Do not invent missing facts.
 | Plan | Listed USD / mo | Sellable | Claim class |
 |------|-----------------|----------|-------------|
 | Free | $0 | Yes (registration) | VERIFIED vs app + LP |
-| Starter | $3.99 | Live paid path, 5-day trial | VERIFIED vs Yearly subscription UI |
+| Starter | $3.99 | Live paid path, no trial | VERIFIED vs Yearly subscription UI |
 | Standard | $4.99 | Coming soon | VERIFIED as listed, not sellable |
 | Professional | $7.99 | Coming soon | VERIFIED as listed, not sellable |
 
